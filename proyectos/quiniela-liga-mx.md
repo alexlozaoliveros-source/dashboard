@@ -102,6 +102,18 @@ ganador general.
 
 - _(ninguna todavía)_
 
+## Avance de construcción
+
+- (2026-07-27) — **Fase 1 (Cimientos) completada.** Se creó la cuenta de
+  Vercel y la de api-football.com (ambas a nombre de Alex, correo
+  alexlozaoliveros@gmail.com). El código vive en
+  `/Users/alexloza/quiniela-liga-mx` (carpeta y repositorio aparte de este
+  cuaderno de notas). La app ya está viva en:
+  **https://quiniela-liga-mx-omega.vercel.app** (por ahora solo muestra
+  una página de bienvenida, es la prueba de que todo el sistema
+  funciona). Siguiente paso: Fase 2, pantallas de crear/entrar a una
+  quiniela.
+
 ## Notas sueltas
 
 - Si alguien pronostica más o menos goles de un jugador de los que metió
