@@ -111,8 +111,13 @@ ganador general.
   cuaderno de notas). La app ya está viva en:
   **https://quiniela-liga-mx-omega.vercel.app** (por ahora solo muestra
   una página de bienvenida, es la prueba de que todo el sistema
-  funciona). Siguiente paso: Fase 2, pantallas de crear/entrar a una
-  quiniela.
+  funciona).
+- (2026-07-27) — **Fase 2 (crear/entrar a una quiniela) completada y
+  probada por Alex.** Ya se puede crear una quiniela (nombre + tu nombre +
+  PIN de 4 dígitos) y queda como líder quien la crea, con un código de 6
+  caracteres para invitar amigos. Probado en vivo: Alex creó la quiniela
+  "viernes botanero" con código G583M4. Siguiente paso: Fase 3, traer la
+  tabla real de la Liga MX, goleadores, y los partidos de la jornada.
 
 ## Notas sueltas
 
