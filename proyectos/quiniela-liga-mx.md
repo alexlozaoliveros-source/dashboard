@@ -146,6 +146,16 @@ ganador general.
   segundos). Alex hizo una cuenta en Supabase por su cuenta pensando que
   hacía falta para esto — no se necesita, ya se resolvió con lo que ya
   estaba armado (Vercel + Neon); puede dejarla sin usar o borrarla.
+- (2026-07-28) — **Separación cuenta / quiniela.** Alex pidió que la
+  cuenta (usuario) sea independiente de la quiniela: ahora la pantalla de
+  inicio solo pregunta "Iniciar sesión" o "Crear cuenta" (correo, usuario,
+  contraseña). Al entrar, cae en una pantalla de "Perfil": si ya tiene
+  quiniela(s), las ve ahí para entrar; si no tiene, ve la opción de crear
+  una o unirse a una. Desde dentro de una quiniela hay un botón "← Mis
+  quinielas" (arriba a la izquierda) para entrar a otra o crear otra sin
+  perder la cuenta — una misma cuenta puede estar en varias quinielas a la
+  vez. Esto también reinició la data de prueba otra vez (agregar el correo
+  como dato obligatorio lo requería).
 
 ## Notas sueltas
 
