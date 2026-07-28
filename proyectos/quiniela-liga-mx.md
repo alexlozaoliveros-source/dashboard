@@ -122,8 +122,14 @@ ganador general.
   probada por Alex.** Ya se puede crear una quiniela (nombre + tu nombre +
   PIN de 4 dígitos) y queda como líder quien la crea, con un código de 6
   caracteres para invitar amigos. Probado en vivo: Alex creó la quiniela
-  "viernes botanero" con código G583M4. Siguiente paso: Fase 3, traer la
-  tabla real de la Liga MX, goleadores, y los partidos de la jornada.
+  "viernes botanero" con código G583M4.
+- (2026-07-27) — **Fase 3 (datos reales de Liga MX) completada.** Tabla de
+  posiciones, goleadores, resultado de la jornada anterior y detección de
+  la jornada siguiente ya funcionan con datos reales (fuente: API de
+  ESPN). Actualmente van en la jornada 2 de 17 del torneo. Los datos se
+  actualizan solos una vez al día de madrugada; también se puede forzar
+  la actualización a mano. Siguiente paso: Fase 4, la pantalla para
+  pronosticar cada partido (esta es la parte central de la app).
 
 ## Notas sueltas
 
