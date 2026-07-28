@@ -128,8 +128,24 @@ ganador general.
   la jornada siguiente ya funcionan con datos reales (fuente: API de
   ESPN). Actualmente van en la jornada 2 de 17 del torneo. Los datos se
   actualizan solos una vez al día de madrugada; también se puede forzar
-  la actualización a mano. Siguiente paso: Fase 4, la pantalla para
-  pronosticar cada partido (esta es la parte central de la app).
+  la actualización a mano.
+- (2026-07-28) — **Fase 4 (pronosticar) completada.** Ya se puede entrar a
+  "Jornada (siguiente)" y poner el marcador de cada partido; si hay goles,
+  aparece la lista de jugadores del equipo que anotó para elegir quién los
+  metió (repitiendo jugador si metió más de uno). Se cierra solo por
+  partido en cuanto arranca.
+- (2026-07-28) — **Cambio de PIN a usuario y contraseña.** Alex prefirió
+  cuentas de verdad (usuario + contraseña) en vez del PIN de 4 dígitos, y
+  que la sesión quede abierta hasta que alguien cierre sesión (no que se
+  desconecte solo). Se cambió a un sistema de cuentas donde una misma
+  cuenta puede pertenecer a varias quinielas. Pantallas: "Crear quiniela" /
+  "Ingresar a una" (piden nombre + código + usuario/contraseña, la primera
+  vez) y una nueva "Iniciar sesión" (solo usuario/contraseña) para volver a
+  entrar después. Este cambio borró la quiniela de prueba "viernes
+  botanero" (no había datos reales todavía, se puede volver a crear en
+  segundos). Alex hizo una cuenta en Supabase por su cuenta pensando que
+  hacía falta para esto — no se necesita, ya se resolvió con lo que ya
+  estaba armado (Vercel + Neon); puede dejarla sin usar o borrarla.
 
 ## Notas sueltas
 
