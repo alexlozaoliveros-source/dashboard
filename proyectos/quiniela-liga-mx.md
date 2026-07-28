@@ -19,15 +19,21 @@ ganador general.
   desde su celular o computadora para meter sus pronósticos (no por
   WhatsApp ni a mano).
 - (2026-07-27) — Resultados: se buscarán automáticamente, sin que Alex tenga
-  que cargarlos a mano. Se investigó y sí existe una fuente gratuita
-  (API-Football) que cubre Liga MX, incluyendo marcador y goleadores, sin
-  costo para un grupo chico. El único detalle: para ligas "no top" como
-  Liga MX, los datos de goleador a veces llegan incompletos o tarde justo
-  después del partido (el marcador final sí es confiable siempre). Por
-  eso: el marcador/ganador se calcula 100% automático, y el goleador
-  también se llena 100% automático (sin que nadie tenga que confirmar cada
-  partido). Lo que sí existe es un botón de "solicitar revisión" (ver
-  detalle en la sección de especificación funcional más abajo).
+  que cargarlos a mano. El marcador/ganador se calcula 100% automático, y
+  el goleador también se llena 100% automático (sin que nadie tenga que
+  confirmar cada partido). Lo que sí existe es un botón de "solicitar
+  revisión" (ver detalle en la sección de especificación funcional más
+  abajo).
+- (2026-07-27) — **Cambio de fuente de datos.** La idea original era usar
+  API-Football, pero se descubrió construyendo que su plan gratis **no
+  incluye la temporada que se está jugando ahora** (solo temporadas viejas
+  2022-2024) — para eso hay que pagar mínimo $19 usd/mes. Alex prefirió no
+  pagar y buscar otra fuente gratis. Se encontró una API pública de ESPN
+  (sin necesidad de cuenta ni clave) que sí da datos de la jornada actual:
+  tabla de posiciones, goleadores, y hasta quién anotó cada gol por
+  partido. Es gratis y funciona bien, pero es una API "no oficial" (ESPN
+  no la documenta ni promete que siga funcionando igual para siempre) —
+  es el trade-off que Alex aceptó a cambio de no pagar.
 - (2026-07-27) — Participantes: grupo chico, entre 2 y 10 amigos.
 - (2026-07-27) — Sistema de puntos por partido:
   - **5 puntos:** marcador exacto (incluye acertar quién gana).
