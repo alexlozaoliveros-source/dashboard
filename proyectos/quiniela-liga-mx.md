@@ -156,24 +156,39 @@ ganador general.
   perder la cuenta — una misma cuenta puede estar en varias quinielas a la
   vez. Esto también reinició la data de prueba otra vez (agregar el correo
   como dato obligatorio lo requería).
+- (2026-07-28) — **Nuevo sistema de goleador (reemplaza el anterior).** Ya
+  no se elige quién mete cada gol de cada partido (era tedioso, muchos
+  jugadores desconocidos). Ahora, una vez por jornada, cada quien elige
+  **3 jugadores de cualquier equipo** (con buscador y filtro por equipo).
+  Por cada gol real que meta alguno de esos 3 jugadores en esa jornada,
+  suma **3 puntos** (si mete 2 goles, son 6 puntos, etc.). El resto del
+  sistema de puntos (5 marcador exacto / 3 solo resultado) no cambió.
+- (2026-07-28) — **Pronosticar ahora es paso a paso.** Al entrar a
+  "Jornada (siguiente)" sale un solo partido a la vez (con escudos de los
+  equipos); al darle "Enviar" pasa al siguiente, en orden, hasta terminar
+  todos. Después sale la pantalla para elegir a los 3 goleadores.
+- (2026-07-28) — **Motor de puntos construido.** Ya se calculan solos: en
+  cuanto todos los partidos de una jornada terminan (durante la
+  actualización diaria), se calculan los puntos de marcador de cada
+  pronóstico y el bonus de goleadores, y quedan guardados por jornada.
+  Falta todavía mostrar la tabla de posiciones de la quiniela (con
+  medallas) en la pantalla principal — los datos ya existen, solo falta la
+  parte visual.
+- (2026-07-28) — Escudos de los equipos agregados (vienen gratis de la
+  misma fuente de datos) en la tabla de posiciones y en la pantalla de
+  pronósticos.
 
 ## Notas sueltas
 
-- Si alguien pronostica más o menos goles de un jugador de los que metió
-  en realidad, se cuenta el número que sí coincide (ej. predijo 2 goles de
-  un jugador y solo metió 1 real → cuenta 1 punto extra, no 2). Los
-  autogoles no se le pueden "atinar" a nadie, pero sí cuentan para el
-  marcador final.
 - Notificaciones: van a ser notificaciones push gratis desde la propia
   app (como las de WhatsApp pero de la app de la quiniela), no SMS de
   pago. En iPhone requiere agregar la página a la pantalla de inicio una
   vez (limitación de Apple).
-- La app real se va a construir en una carpeta/repo aparte (no en este
-  repositorio de notas), con Next.js + Vercel (hosting gratis) +
-  API-Football (datos reales de Liga MX, gratis). El plan técnico
-  completo quedó guardado como plan de Claude Code el 2026-07-27 (fases:
-  cimientos → crear/entrar a quiniela → datos reales de Liga MX →
-  pronósticos y puntos → notificaciones → revisión de resultados).
+- La app real se vive en una carpeta/repo aparte (no en este
+  repositorio de notas): `/Users/alexloza/quiniela-liga-mx`, con Next.js +
+  Vercel (hosting gratis) + la API pública de ESPN (datos reales de Liga
+  MX, gratis). El plan técnico completo quedó guardado como plan de
+  Claude Code el 2026-07-27.
 - Importante: por los límites de las cuentas gratis, la tabla, los
   goleadores y los puntos se actualizan una vez al día (de madrugada), no
   en vivo durante los partidos.
