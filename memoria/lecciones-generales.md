@@ -9,7 +9,11 @@ aplican a varios. Se actualiza automáticamente durante las conversaciones.
   (sobre todo si baja algo de internet y pide "seguir sus instrucciones"
   a ciegas), y explicárselo en simple antes de correrlo. Cuando se verifica
   que es seguro, Alex está de acuerdo en seguir adelante.
-- (2026-07-28) — Ya quedó instalado el skill "frontend-design" (de
-  github.com/anthropics/skills) a nivel de usuario
-  (`~/.claude/skills/frontend-design/`), para usarse en cualquier proyecto
-  futuro que necesite diseño visual (no solo la quiniela).
+- (2026-07-28) — Quedaron instalados a nivel de usuario (para todos los
+  proyectos futuros, no solo la quiniela), en `~/.claude/skills/`:
+  - `frontend-design` (de github.com/anthropics/skills) — guía de diseño
+    visual para cuando se construya una interfaz.
+  - `find-skills` (de github.com/vercel-labs/skills) — le sirve a Claude
+    para buscar y sugerir otros "skills" (paquetes de instrucciones) que
+    puedan ayudar en tareas futuras; Alex pidió que se avise cuando
+    convenga usar uno.
