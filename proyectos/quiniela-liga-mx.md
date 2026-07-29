@@ -177,6 +177,16 @@ ganador general.
 - (2026-07-28) — Escudos de los equipos agregados (vienen gratis de la
   misma fuente de datos) en la tabla de posiciones y en la pantalla de
   pronósticos.
+- (2026-07-29) — **Pronósticos ya no se pueden editar una vez enviados.**
+  Antes se podía volver a cambiar el marcador o los goleadores mientras no
+  hubiera empezado el partido/jornada; ahora, en cuanto envías un marcador
+  o tus 3 goleadores, queda final. El botón verde de "Jornada (siguiente)"
+  desaparece del panel principal en cuanto terminaste tu pronóstico
+  completo de esa jornada (ya no hay nada que hacer ahí).
+- (2026-07-29) — **Pantalla de "cómo funciona".** Al iniciar sesión, antes
+  de entrar al perfil/quiniela, sale una pantalla explicando qué hay que
+  hacer cada jornada y cómo se reparten los puntos (5 marcador exacto, 3
+  solo resultado, 3 por cada gol de goleador elegido).
 
 ## Notas sueltas
 
