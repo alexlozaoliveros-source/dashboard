@@ -187,6 +187,16 @@ ganador general.
   de entrar al perfil/quiniela, sale una pantalla explicando qué hay que
   hacer cada jornada y cómo se reparten los puntos (5 marcador exacto, 3
   solo resultado, 3 por cada gol de goleador elegido).
+- (2026-07-29) — **Rediseño visual completo.** Alex mandó una plantilla de
+  Canva de referencia (tema cancha de fútbol: césped verde, foto de balón
+  en la portería, tipografía gruesa tipo cartel deportivo, menús con
+  números grandes "01/02/03", ilustraciones tipo boceto). Se aplicó un
+  sistema de diseño nuevo a toda la app: fondo crema con verde pasto,
+  encabezados con franjas de césped (como visto desde arriba de una
+  cancha), tipografía Anton (gruesa, para títulos) + Oswald (para
+  etiquetas), y las pantallas de "cómo funciona" y "perfil" con el
+  formato numerado tipo índice. Instalado con el skill de diseño
+  `frontend-design`.
 
 ## Notas sueltas
 
