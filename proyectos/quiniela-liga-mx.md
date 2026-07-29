@@ -207,6 +207,15 @@ ganador general.
   de la actual). Como la jornada 3 apenas va a terminar (según Alex, como
   el lunes), todavía no aparece nada ahí — es normal, aparecerá sola en
   cuanto se calculen sus puntos.
+- (2026-07-29) — **Dos bugs reportados por el primer amigo real que se
+  metió.** 1) La pantalla de "cómo funciona" solo salía al iniciar sesión
+  (para quien ya tenía cuenta), pero no al entrar con el código por
+  primera vez — se corrigió para que salga justo después de entrar/crear
+  una quiniela, que es cuando de verdad hace falta. 2) La tabla de
+  posiciones solo mostraba a quien ya tenía puntos calculados, así que
+  alguien que se acababa de unir no aparecía en ningún lado — se corrigió
+  para que siempre se parta de la lista real de participantes (con 0
+  puntos si todavía no ha jugado ninguna jornada).
 
 ## Notas sueltas
 
