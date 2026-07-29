@@ -197,6 +197,16 @@ ganador general.
   etiquetas), y las pantallas de "cómo funciona" y "perfil" con el
   formato numerado tipo índice. Instalado con el skill de diseño
   `frontend-design`.
+- (2026-07-29) — **Tabla de posiciones + historial.** Donde antes solo
+  salía la lista de participantes, ahora sale una tabla de posiciones real
+  (con medallas 🥇🥈🥉 y puntos acumulados). Si le dan clic, se abre un
+  historial con las jornadas ya terminadas (una vez que se calculan sus
+  puntos): ahí se ve, jornada por jornada, qué pronosticó cada quien —
+  marcador de cada partido y sus 3 goleadores — incluyendo lo que
+  pronosticaron los demás participantes (solo de jornadas ya cerradas, no
+  de la actual). Como la jornada 3 apenas va a terminar (según Alex, como
+  el lunes), todavía no aparece nada ahí — es normal, aparecerá sola en
+  cuanto se calculen sus puntos.
 
 ## Notas sueltas
 
