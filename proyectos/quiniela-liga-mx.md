@@ -224,6 +224,9 @@ ganador general.
   y se aplica automático en la sincronización diaria. 3) Se agregó un
   recuadro de "Cómo se reparten los puntos" justo debajo del código para
   invitar amigos, en el panel principal.
+- (2026-07-30) — Ícono de la app: cuando alguien agregue la página a su
+  celular (pantalla de inicio) o la vea en la pestaña del navegador, ahora
+  sale una foto de un árbitro señalando, que mandó Alex.
 
 ## Notas sueltas
 
