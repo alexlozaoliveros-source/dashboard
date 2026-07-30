@@ -216,6 +216,14 @@ ganador general.
   alguien que se acababa de unir no aparecía en ningún lado — se corrigió
   para que siempre se parta de la lista real de participantes (con 0
   puntos si todavía no ha jugado ninguna jornada).
+- (2026-07-29) — Tres ajustes más: 1) se corrigió un bug donde el
+  marcador del partido anterior se quedaba puesto al pasar al siguiente
+  (ahora siempre empieza en 0-0). 2) Se reemplazó el escudo de América por
+  uno personalizado que mandó Alex (una rata sobre el escudo, sin fondo
+  blanco) — vive en el propio proyecto (`public/escudos/america-rata.png`)
+  y se aplica automático en la sincronización diaria. 3) Se agregó un
+  recuadro de "Cómo se reparten los puntos" justo debajo del código para
+  invitar amigos, en el panel principal.
 
 ## Notas sueltas
 
