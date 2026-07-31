@@ -3,7 +3,7 @@
 - **Tipo:** Programación
 - **Estado:** 🟢 Activo
 - **Inicio:** 2026-07-30
-- **Última actualización:** 2026-07-30
+- **Última actualización:** 2026-07-31
 
 ## Qué es
 
@@ -47,6 +47,19 @@ reales, no con promesas.
 ## Lecciones aprendidas
 
 - _(ninguna todavía)_
+
+- (2026-07-31) — El recolector de la Fase 0 se puso a correr solo, todo el
+  tiempo: es un "servicio" de la Mac (`launchd`) que arranca automático, se
+  reinicia solo si se cae, y sigue corriendo aunque cierres la terminal o
+  la sesión. Se probó apagándolo a la fuerza y confirmando que vuelve a
+  arrancar solo. **Importante:** si cierras la tapa del laptop (sin un
+  monitor externo conectado) la Mac igual se duerme — eso es del hardware,
+  ningún programa lo puede evitar. Hay que mantener la tapa abierta y la
+  Mac conectada a corriente durante las 72 horas que dura la primera
+  prueba.
+- (2026-07-31) — El conteo de las 72 horas del gate F0 arrancó a las
+  01:47 UTC del 31 de julio de 2026. Debería estar listo para revisar
+  alrededor del 3 de agosto de 2026.
 
 ## Notas sueltas
 
