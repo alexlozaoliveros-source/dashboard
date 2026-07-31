@@ -75,6 +75,14 @@ reales, no con promesas.
   se corrige solo un instante después — parece ser así como Polymarket
   publica los datos, no un error del programa. Se necesita más análisis
   antes de decidir si eso cambia cómo se mide el gate F0.
+- (2026-07-31) — **Segundo bug real, encontrado al revisar el estado unas
+  horas después:** uno de los 3 "oídos" del programa (el que escucha el
+  precio del oráculo) se quedó 5+ minutos sin recibir nada, sin avisar que
+  algo estaba mal — el programa pensaba que todo iba bien. Se corrigió
+  agregando una alarma de "no he oído nada en 30 segundos, reconéctate".
+  Por este bug, el conteo de las 72 horas se reinició otra vez, ahora
+  desde las 03:20:53 UTC del 31 de julio. Se está revisando el estado con
+  más frecuencia mientras se estabiliza.
 
 ## Notas sueltas
 
