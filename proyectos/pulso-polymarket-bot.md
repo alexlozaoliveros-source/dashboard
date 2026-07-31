@@ -57,9 +57,24 @@ reales, no con promesas.
   ningún programa lo puede evitar. Hay que mantener la tapa abierta y la
   Mac conectada a corriente durante las 72 horas que dura la primera
   prueba.
-- (2026-07-31) — El conteo de las 72 horas del gate F0 arrancó a las
-  01:47 UTC del 31 de julio de 2026. Debería estar listo para revisar
-  alrededor del 3 de agosto de 2026.
+- (2026-07-31) — Se le agregaron al plan técnico unas "reglas aprendidas"
+  de un bot parecido de otra persona (qué precios NO vale la pena cotizar,
+  qué señales sí ayudan) y 3 preguntas concretas que se van a responder
+  con los datos propios más adelante.
+- (2026-07-31) — **Bug real encontrado y corregido en las primeras horas:**
+  el programa se reconectaba solo cada 10 segundos por error (mal
+  interpretaba la respuesta del servidor a su propio "¿sigues ahí?"). Ya
+  se arregló y se confirmó que dejó de pasar.
+- (2026-07-31) — Por ese bug, el conteo de las 72 horas limpias se
+  reinició a las 02:29:59 UTC del 31 de julio (no tenía sentido contar el
+  tramo con el error). Debería estar listo para revisar alrededor del 3 de
+  agosto de 2026.
+- (2026-07-31) — Se detectó algo que **no** es un bug pero hay que decidir
+  qué hacer con ello más adelante: el "libro de órdenes" de Polymarket
+  aparece cruzado (algo que en teoría no debería pasar) muy seguido, pero
+  se corrige solo un instante después — parece ser así como Polymarket
+  publica los datos, no un error del programa. Se necesita más análisis
+  antes de decidir si eso cambia cómo se mide el gate F0.
 
 ## Notas sueltas
 
