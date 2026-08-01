@@ -227,6 +227,14 @@ ganador general.
 - (2026-07-30) — Ícono de la app: cuando alguien agregue la página a su
   celular (pantalla de inicio) o la vea en la pestaña del navegador, ahora
   sale una foto de un árbitro señalando, que mandó Alex.
+- (2026-07-31) — Alex pidió que la tabla se actualice al momento de que
+  termine cada partido. Se probó subir la frecuencia de la actualización
+  automática, pero el plan gratis de Vercel bloquea cualquier cosa más
+  seguida que una vez al día (lo confirmó al intentar desplegarlo). Para
+  no tener que crear otra cuenta externa, se agregó un botón de
+  "🔄 Actualizar resultados ahora" dentro del panel principal — cualquiera
+  lo puede presionar cuando quiera ver los resultados más recientes al
+  momento, sin esperar a la actualización automática de la madrugada.
 
 ## Notas sueltas
 
