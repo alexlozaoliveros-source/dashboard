@@ -235,6 +235,12 @@ ganador general.
   "🔄 Actualizar resultados ahora" dentro del panel principal — cualquiera
   lo puede presionar cuando quiera ver los resultados más recientes al
   momento, sin esperar a la actualización automática de la madrugada.
+- (2026-07-31) — Los puntos de marcador (5/3) ahora se calculan al momento
+  en que cada partido termina, no hasta que cierra toda la jornada — así
+  la tabla de posiciones se ve viva mientras se juega. El bonus de
+  goleadores sigue esperando a que termine la jornada completa (no se
+  puede saber a medias, porque un jugador puede meter goles en varios
+  partidos de la misma jornada).
 
 ## Notas sueltas
 
