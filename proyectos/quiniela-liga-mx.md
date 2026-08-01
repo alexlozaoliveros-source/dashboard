@@ -241,6 +241,14 @@ ganador general.
   goleadores sigue esperando a que termine la jornada completa (no se
   puede saber a medias, porque un jugador puede meter goles en varios
   partidos de la misma jornada).
+- (2026-07-31) — Alex hizo notar que un jugador solo juega un partido por
+  jornada, así que en cuanto termina ESE partido específico ya se sabe si
+  metió gol o no — no hace falta esperar a que cierre toda la jornada para
+  el bonus de goleador. Se corrigió: el bonus de goleador (3 pts por gol)
+  ahora también se suma al momento, en cuanto termina el partido del
+  jugador elegido. Además, el historial (se abre tocando la tabla de
+  posiciones) ahora muestra la jornada en curso con los partidos ya
+  jugados, aunque la jornada completa no haya cerrado.
 
 ## Notas sueltas
 
