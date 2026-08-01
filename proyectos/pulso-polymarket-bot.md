@@ -83,6 +83,20 @@ reales, no con promesas.
   Por este bug, el conteo de las 72 horas se reinició otra vez, ahora
   desde las 03:20:53 UTC del 31 de julio. Se está revisando el estado con
   más frecuencia mientras se estabiliza.
+- (2026-08-01) — **Tercer bug, el más grave hasta ahora:** el "oído" más
+  importante — el que escucha el precio de Polymarket (el order book) —
+  dejó de recibir datos durante **2 horas y 41 minutos**, sin ningún
+  aviso de error. Los otros dos oídos (Binance, oráculo) seguían
+  funcionando normal, así que los chequeos rápidos de "¿cómo vas?" no lo
+  detectaron — se necesitó comparar el estado en dos momentos distintos
+  para notar que uno de los contadores no se había movido nada. Causa: un
+  error de red pasajero tumbó silenciosamente una de las partes del
+  programa, y nadie estaba "escuchando" para darse cuenta. Se corrigió con
+  dos capas de protección — la parte específica que falló ahora se
+  recupera sola, y además se agregó un "supervisor" que vigila que todas
+  las partes del programa sigan vivas y las reinicia solas si alguna se
+  cae, sin esperar a que alguien lo note. El conteo de las 72 horas se
+  reinició otra vez, desde ~05:19 UTC del 1 de agosto.
 
 ## Notas sueltas
 
