@@ -249,6 +249,10 @@ ganador general.
   jugador elegido. Además, el historial (se abre tocando la tabla de
   posiciones) ahora muestra la jornada en curso con los partidos ya
   jugados, aunque la jornada completa no haya cerrado.
+- (2026-08-01) — Junto a cada goleador elegido (en el panel principal y en
+  el historial) ahora sale una ✓ por cada gol que metió, o una ✗ si su
+  partido ya se jugó y no metió gol. Si su partido todavía no se juega, no
+  sale ninguna marca.
 
 ## Notas sueltas
 
