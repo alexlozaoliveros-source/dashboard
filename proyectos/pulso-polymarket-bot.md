@@ -3,7 +3,7 @@
 - **Tipo:** Programación
 - **Estado:** 🟢 Activo
 - **Inicio:** 2026-07-30
-- **Última actualización:** 2026-07-31
+- **Última actualización:** 2026-08-01
 
 ## Qué es
 
@@ -97,6 +97,14 @@ reales, no con promesas.
   las partes del programa sigan vivas y las reinicia solas si alguna se
   cae, sin esperar a que alguien lo note. El conteo de las 72 horas se
   reinició otra vez, desde ~05:19 UTC del 1 de agosto.
+- (2026-08-01) — **Se cayó el internet de verdad (~8.4 horas, por la
+  lluvia)** — esta vez no fue un bug del programa. Lo bueno: el programa no
+  se murió, se quedó reintentando solo todo ese tiempo, y en cuanto volvió
+  la señal se reconectó él solo en 4 minutos, sin que nadie tuviera que
+  hacer nada — primera prueba real de que las correcciones anteriores
+  funcionan ante una caída larga de verdad. Lo malo (inevitable): durante
+  esas 8.4 horas no se guardó ningún dato, así que el conteo de las 72
+  horas se reinició una vez más, desde las 15:44 UTC del 1 de agosto.
 
 ## Notas sueltas
 
