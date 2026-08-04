@@ -18,13 +18,13 @@ El proyecto avanza en fases con "compuertas" (gates): no se pasa a la
 siguiente fase sin que Alex apruebe los resultados de la anterior con datos
 reales, no con promesas.
 
-- **Fase 0 (actual):** un programa recolector que guarda, sin parar, los
+- **Fase 0 (hecha):** un programa recolector que guarda, sin parar, los
   datos de los mercados (libro de órdenes de Polymarket, precio de Binance,
-  precio del oráculo que usa Polymarket para resolver). No apuesta nada
-  todavía, solo observa y guarda.
-- **Fase 1:** con esos datos, calcular si el precio del mercado se desvía de
-  lo que "debería" valer, y si esa desviación es aprovechable después de
-  costos reales.
+  precio del oráculo que usa Polymarket para resolver). No apuesta nada,
+  solo observa y guarda. Sigue corriendo de fondo, acumulando más datos.
+- **Fase 1 (hecha — resultado: no hay oportunidad, ver abajo):** con esos
+  datos, calcular si el precio del mercado se desvía de lo que "debería"
+  valer, y si esa desviación es aprovechable después de costos reales.
 - **Fase 2:** simular apuestas en vivo (dinero de mentira) durante 2 semanas.
 - **Fase 3:** solo si todo lo anterior sale bien, operar con dinero real,
   empezando con un límite muy bajo (200 USDC) y límites de pérdida
@@ -123,11 +123,32 @@ reales, no con promesas.
     corregir el problema de reconexión antes de repetir la prueba o si
     0.17%/0.20% ya es aceptable.
 
+- (2026-08-04) — **Se hizo la Fase 1 completa, y el resultado es que NO
+  hay una oportunidad real de ganar dinero con esta estrategia** — al
+  menos no con los datos de estos días. Se lo digo tal cual porque así lo
+  pediste desde el principio: un "no" con datos también es un resultado
+  válido, no un fracaso del sistema.
+  - Se probaron 12 formas distintas de "cotizar" (comprar barato / vender
+    caro, en bitcoin y ethereum, con distintos márgenes) usando los ~4.7
+    días de datos guardados. **Las 12 salieron perdiendo dinero**, de forma
+    consistente y no por casualidad.
+  - Se revisó con más detalle (132 combinaciones, separando también por
+    momento de la ventana) y solo 2 salieron ganando — pero esa cantidad es
+    **menos** de lo que se esperaría por puro azar probando tantas
+    combinaciones a la vez, así que no cuenta como una oportunidad real.
+  - Se probaron también 3 ideas concretas basadas en lo que le funcionó a
+    otra persona con un bot parecido: ninguna revirtió el resultado.
+  - Reporte completo con todos los números en `~/pulso/report_f1.md`.
+  - El colector de datos se deja corriendo igual — los datos guardados
+    siguen siendo valiosos por si más adelante cambian las condiciones del
+    mercado y vale la pena repetir el análisis.
+
 ## Notas sueltas
 
 - El detalle técnico completo (cómo se conecta a cada fuente de datos, qué
   archivos genera, qué debe cumplir cada fase para aprobarse) vive en
   `~/pulso/CLAUDE.md`, dentro de la carpeta propia del proyecto.
-- Cuando se cumplan las 72 horas de datos limpios de la Fase 0, hay que
-  mostrarle a Alex el reporte (`report_f0.md`) para que decida si se pasa a
-  la Fase 1.
+- Decisión pendiente de Alex: con el resultado negativo de la Fase 1
+  (arriba), ¿se cierra el proyecto aquí, se investiga algo puntual antes
+  de cerrarlo, o se deja el colector corriendo por si el mercado cambia
+  más adelante?
