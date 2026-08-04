@@ -672,6 +672,43 @@
 
   .btn-eliminar:hover { border-color: var(--rojo); color: var(--rojo); }
 
+  /* ---------- Copia de seguridad ---------- */
+
+  .copia-seguridad {
+    max-width: 620px;
+    margin: 8px auto 0;
+    padding: 18px 4px 0;
+    text-align: center;
+  }
+
+  .copia-seguridad-texto {
+    color: var(--gris);
+    font-size: 13px;
+    margin: 0 0 10px;
+    line-height: 1.5;
+  }
+
+  .copia-seguridad-botones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .btn-copia {
+    background: none;
+    border: 1.5px solid var(--linea);
+    color: var(--ink);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-family: var(--fuente);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .btn-copia:hover { border-color: var(--rojo); color: var(--rojo); }
+
   .oculto { display: none !important; }
 </style>
 </head>
@@ -733,6 +770,18 @@
     </div>
 
   </main>
+
+  <footer class="copia-seguridad">
+    <p class="copia-seguridad-texto">
+      Para ver los mismos compromisos en el celular y en la computadora,
+      guarda una copia aquí y cárgala en el otro aparato.
+    </p>
+    <div class="copia-seguridad-botones">
+      <button type="button" class="btn-copia" id="btn-exportar">⬇ Guardar copia de mis datos</button>
+      <button type="button" class="btn-copia" id="btn-importar">⬆ Cargar una copia guardada</button>
+      <input type="file" id="input-importar-archivo" accept="application/json" class="oculto">
+    </div>
+  </footer>
 </div>
 
 <div class="modal-overlay oculto" id="modal-overlay">
@@ -1231,6 +1280,70 @@
     guardarCompromisos();
     cerrarModal();
     renderTodo();
+  });
+
+  // ---------- Copia de seguridad (exportar / importar) ----------
+
+  function esListaDeCompromisosValida(datos) {
+    return Array.isArray(datos) && datos.every(function (c) {
+      return c && typeof c === "object" && typeof c.id !== "undefined" && typeof c.titulo === "string" && typeof c.fecha === "string";
+    });
+  }
+
+  $("btn-exportar").addEventListener("click", function () {
+    var contenido = JSON.stringify(compromisos, null, 2);
+    var blob = new Blob([contenido], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var enlace = document.createElement("a");
+    enlace.href = url;
+    enlace.download = "mi-agenda-copia-" + hoyISO() + ".json";
+    document.body.appendChild(enlace);
+    enlace.click();
+    enlace.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  var elInputImportarArchivo = $("input-importar-archivo");
+
+  $("btn-importar").addEventListener("click", function () {
+    elInputImportarArchivo.click();
+  });
+
+  elInputImportarArchivo.addEventListener("change", function () {
+    var archivo = elInputImportarArchivo.files[0];
+    if (!archivo) return;
+
+    var lector = new FileReader();
+    lector.onload = function () {
+      var datos;
+      try {
+        datos = JSON.parse(lector.result);
+      } catch (e) {
+        window.alert("Ese archivo no se pudo leer. Asegúrate de elegir un archivo de copia de Mi agenda (termina en .json).");
+        elInputImportarArchivo.value = "";
+        return;
+      }
+
+      if (!esListaDeCompromisosValida(datos)) {
+        window.alert("Ese archivo no tiene el formato de una copia de Mi agenda.");
+        elInputImportarArchivo.value = "";
+        return;
+      }
+
+      var ok = window.confirm("Esto va a reemplazar los " + compromisos.length + " compromisos que hay ahora en este aparato por los " + datos.length + " de la copia. ¿Seguro que quieres continuar?");
+      elInputImportarArchivo.value = "";
+      if (!ok) return;
+
+      compromisos = datos;
+      guardarCompromisos();
+      diaSeleccionado = hoyISO();
+      hoy = isoAFecha(hoyISO());
+      mesActual = hoy.getMonth();
+      anioActual = hoy.getFullYear();
+      renderTodo();
+      window.alert("Listo, se cargó la copia.");
+    };
+    lector.readAsText(archivo);
   });
 
   // ---------- Navegación del calendario ----------
