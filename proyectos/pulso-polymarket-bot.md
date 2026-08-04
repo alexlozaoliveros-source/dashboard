@@ -3,7 +3,7 @@
 - **Tipo:** Programación
 - **Estado:** 🟢 Activo
 - **Inicio:** 2026-07-30
-- **Última actualización:** 2026-08-01
+- **Última actualización:** 2026-08-04
 
 ## Qué es
 
@@ -105,6 +105,23 @@ reales, no con promesas.
   funcionan ante una caída larga de verdad. Lo malo (inevitable): durante
   esas 8.4 horas no se guardó ningún dato, así que el conteo de las 72
   horas se reinició una vez más, desde las 15:44 UTC del 1 de agosto.
+
+- (2026-08-04) — **Se cumplieron las 72 horas del tramo limpio, y ya hay
+  reporte con números reales** (`~/pulso/report_f0.md`). La noticia, sin
+  adornos: **no pasa el gate tal como está escrito**, aunque tampoco está
+  lejos:
+  - 3 de 5 "oídos" cumplen el límite de menos de 0.1% de cortes; los otros
+    2 (el oráculo y el order book de bitcoin) lo pasan por poco (0.17% y
+    0.20% en vez de 0.1%).
+  - El "libro cruzado" (algo que la regla original dice que nunca debería
+    pasar) sí pasa, miles de veces — pero ya se había visto antes que
+    parece autocorregirse solo casi al instante, no un error real. No se
+    revisó eso a fondo sobre las 73 horas completas, solo una muestra.
+  - No se cambió ninguna regla por cuenta propia. Hay 2 decisiones
+    pendientes que le tocan a Alex: si se ajusta cómo se mide lo del
+    "libro cruzado" (o se investiga más primero), y si vale la pena
+    corregir el problema de reconexión antes de repetir la prueba o si
+    0.17%/0.20% ya es aceptable.
 
 ## Notas sueltas
 
