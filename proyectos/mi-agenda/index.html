@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi agenda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F3F0E8;
+    --card: #FFFDF7;
+    --ink: #22344A;
+    --rojo: #D5382E;
+    --gris: #8B8577;
+    --linea: #E4DFD2;
+    --rosa: rgba(213, 56, 46, 0.09);
+    --sombra: 0 4px 18px rgba(34, 52, 74, 0.10);
+    --radio: 18px;
+    --fuente: 'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg);
+    background-image: radial-gradient(circle, rgba(139, 133, 119, 0.18) 1px, transparent 1.2px);
+    background-size: 18px 18px;
+    color: var(--ink);
+    font-family: var(--fuente);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .app {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  /* ---------- Cabecera ---------- */
+
+  .cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .cabecera h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .fecha-larga {
+    margin: 4px 0 0;
+    color: var(--gris);
+    font-size: 15px;
+  }
+
+  .btn-nuevo {
+    background: var(--rojo);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 13px 22px;
+    font-family: var(--fuente);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(213, 56, 46, 0.35);
+    white-space: nowrap;
+  }
+
+  .btn-nuevo:hover { background: #c02f26; }
+
+  /* ---------- Layout general ---------- */
+
+  .contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .columna-izquierda,
+  .columna-derecha {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  @media (min-width: 880px) {
+    .contenido {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) 1fr;
+      align-items: start;
+    }
+  }
+
+  .tarjeta {
+    background: var(--card);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: 22px 22px 18px;
+  }
+
+  .tarjeta h2 {
+    margin: 0 0 14px;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+  }
+
+  .tarjeta h2 .rango {
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+    color: var(--gris);
+    font-size: 14px;
+  }
+
+  /* ---------- Tarjeta HOY (hoja de taco) ---------- */
+
+  .taco {
+    padding-top: 0;
+    overflow: hidden;
+  }
+
+  .taco-perforado {
+    height: 12px;
+    background-image: radial-gradient(circle at 7px 6px, var(--bg) 4px, transparent 4.5px);
+    background-size: 16px 12px;
+    background-repeat: repeat-x;
+    background-position: center top;
+  }
+
+  .taco-cuerpo {
+    padding: 14px 22px 18px;
+    text-align: center;
+    border-bottom: 1px dashed var(--linea);
+    margin-bottom: 16px;
+  }
+
+  .taco-etiqueta {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--gris);
+    text-transform: uppercase;
+  }
+
+  .taco-mes {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-top: 6px;
+  }
+
+  .taco-numero {
+    font-size: clamp(64px, 13vw, 92px);
+    font-weight: 900;
+    line-height: 0.95;
+    margin: 2px 0 0;
+    letter-spacing: -0.02em;
+  }
+
+  .taco-dia-semana {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    text-transform: capitalize;
+    margin-top: 2px;
+  }
+
+  /* ---------- Listas de compromisos ---------- */
+
+  .lista-compromisos {
+    list-style: none;
+    margin: 0;
+    padding: 0 22px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .taco .lista-compromisos { padding: 0 22px 4px; }
+
+  .fila-compromiso {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 4px;
+    border-radius: 10px;
+    text-align: left;
+  }
+
+  .check {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    border-radius: 50%;
+    border: 2px solid var(--gris);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .check.marcado {
+    background: var(--rojo);
+    border-color: var(--rojo);
+  }
+
+  .check.marcado::after { content: "✓"; }
+
+  .compromiso-texto {
+    flex: 1;
+    min-width: 0;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: var(--fuente);
+    padding: 0;
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  .compromiso-hora {
+    display: block;
+    font-size: 12px;
+    color: var(--gris);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 1px;
+  }
+
+  .compromiso-titulo {
+    display: block;
+    font-size: 15px;
+  }
+
+  .compromiso-nota {
+    display: block;
+    font-size: 12.5px;
+    color: var(--gris);
+    margin-top: 2px;
+  }
+
+  .fila-compromiso.hecho .compromiso-titulo {
+    text-decoration: line-through;
+    color: var(--gris);
+  }
+
+  .vacio {
+    padding: 4px 22px 18px;
+    color: var(--gris);
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  .taco .vacio { padding: 0 22px 18px; }
+
+  /* ---------- Esta semana ---------- */
+
+  .fila-semana {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 10px;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--fuente);
+    text-align: left;
+    color: inherit;
+  }
+
+  .fila-semana:hover { background: rgba(34, 52, 74, 0.04); }
+
+  .fila-semana.hoy-semana { background: var(--rosa); }
+  .fila-semana.hoy-semana:hover { background: var(--rosa); }
+
+  .dia-etiqueta {
+    flex-shrink: 0;
+    width: 42px;
+    text-align: center;
+  }
+
+  .dia-etiqueta .abrev {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gris);
+    text-transform: uppercase;
+  }
+
+  .dia-etiqueta .numero {
+    display: block;
+    font-size: 19px;
+    font-weight: 800;
+    margin-top: 1px;
+  }
+
+  .dia-etiqueta.domingo .abrev,
+  .dia-etiqueta.domingo .numero {
+    color: var(--rojo);
+  }
+
+  .lista-dia-semana {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 2px;
+  }
+
+  .linea-semana {
+    font-size: 13.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .linea-semana .hora-semana {
+    color: var(--gris);
+    font-weight: 600;
+    margin-right: 6px;
+  }
+
+  .linea-semana.hecho-semana { text-decoration: line-through; color: var(--gris); }
+
+  .libre {
+    font-size: 13.5px;
+    color: var(--gris);
+    font-style: italic;
+  }
+
+  /* ---------- Calendario ---------- */
+
+  .cal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .cal-header h2 {
+    margin: 0;
+    flex: 1;
+    font-size: 19px;
+    font-weight: 800;
+    text-transform: capitalize;
+    letter-spacing: 0;
+  }
+
+  .cal-flecha, .btn-hoy {
+    background: none;
+    border: 1px solid var(--linea);
+    border-radius: 10px;
+    width: 34px;
+    height: 34px;
+    font-size: 17px;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fuente);
+  }
+
+  .cal-flecha:hover, .btn-hoy:hover { background: rgba(34, 52, 74, 0.05); }
+
+  .btn-hoy {
+    width: auto;
+    padding: 0 14px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .grid-semana-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gris);
+    margin-bottom: 6px;
+  }
+
+  .grid-semana-header .domingo { color: var(--rojo); }
+
+  .grid-dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
+
+  .dia-mes {
+    aspect-ratio: 1 / 1;
+    border: none;
+    background: transparent;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    font-family: var(--fuente);
+    color: var(--ink);
+    position: relative;
+    padding: 2px;
+  }
+
+  .dia-mes:hover { background: rgba(34, 52, 74, 0.05); }
+
+  .dia-mes.vacio-celda {
+    visibility: hidden;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .dia-mes.domingo { color: var(--rojo); }
+
+  .dia-mes .numero-dia {
+    font-size: 14.5px;
+    font-weight: 700;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .dia-mes.hoy .numero-dia {
+    border: 2px solid var(--rojo);
+  }
+
+  .dia-mes.seleccionado {
+    background: var(--rosa);
+  }
+
+  .dia-mes .puntos {
+    display: flex;
+    gap: 3px;
+    height: 5px;
+  }
+
+  .dia-mes .punto {
+    width: 4.5px;
+    height: 4.5px;
+    border-radius: 50%;
+    background: var(--rojo);
+  }
+
+  .cal-lista-dia {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--linea);
+  }
+
+  .cal-lista-dia-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .cal-lista-dia-titulo {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .btn-anadir-dia {
+    background: none;
+    border: 1.5px solid var(--rojo);
+    color: var(--rojo);
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: var(--fuente);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .btn-anadir-dia:hover { background: var(--rosa); }
+
+  /* ---------- Foco visible (teclado) ---------- */
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2.5px solid var(--rojo);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Modal ---------- */
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(34, 52, 74, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 50;
+  }
+
+  .modal-overlay.oculto { display: none; }
+
+  .modal {
+    background: var(--card);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    width: 100%;
+    max-width: 440px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 26px 26px 22px;
+    position: relative;
+  }
+
+  .modal-cerrar {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--gris);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+
+  .modal-cerrar:hover { background: rgba(34, 52, 74, 0.06); }
+
+  .modal h2 {
+    margin: 0 0 18px;
+    font-size: 20px;
+    font-weight: 800;
+    padding-right: 30px;
+  }
+
+  .modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .modal label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .modal input[type="text"],
+  .modal input[type="date"],
+  .modal input[type="time"],
+  .modal textarea {
+    width: 100%;
+    font-family: var(--fuente);
+    font-size: 15px;
+    padding: 11px 12px;
+    border: 1.5px solid var(--linea);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--ink);
+  }
+
+  .modal textarea {
+    resize: vertical;
+    min-height: 64px;
+  }
+
+  .tabs-hora {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .tab-hora {
+    flex: 1;
+    padding: 9px 10px;
+    border-radius: 10px;
+    border: 1.5px solid var(--linea);
+    background: #fff;
+    font-family: var(--fuente);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--gris);
+    cursor: pointer;
+  }
+
+  .tab-hora.activa {
+    border-color: var(--rojo);
+    color: var(--rojo);
+    background: var(--rosa);
+  }
+
+  .campo-hora.oculto { display: none; }
+
+  .modal-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .btn-guardar {
+    background: var(--rojo);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-family: var(--fuente);
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .btn-guardar:hover { background: #c02f26; }
+
+  .btn-eliminar {
+    background: none;
+    border: 1.5px solid var(--linea);
+    color: var(--gris);
+    border-radius: 999px;
+    padding: 12px 18px;
+    font-family: var(--fuente);
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-right: auto;
+  }
+
+  .btn-eliminar:hover { border-color: var(--rojo); color: var(--rojo); }
+
+  .oculto { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <header class="cabecera">
+    <div>
+      <h1>Mi agenda</h1>
+      <p class="fecha-larga" id="fecha-hoy-larga"></p>
+    </div>
+    <button type="button" class="btn-nuevo" id="btn-nuevo">+ Nuevo compromiso</button>
+  </header>
+
+  <main class="contenido">
+
+    <div class="columna-izquierda">
+
+      <section class="tarjeta taco" aria-labelledby="taco-etiqueta-hoy">
+        <div class="taco-perforado" aria-hidden="true"></div>
+        <div class="taco-cuerpo">
+          <div class="taco-etiqueta" id="taco-etiqueta-hoy">Hoy</div>
+          <div class="taco-mes" id="taco-mes"></div>
+          <div class="taco-numero" id="taco-numero"></div>
+          <div class="taco-dia-semana" id="taco-dia-semana"></div>
+        </div>
+        <ul class="lista-compromisos" id="lista-hoy"></ul>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Esta semana <span class="rango" id="semana-rango"></span></h2>
+        <div id="lista-semana"></div>
+      </section>
+
+    </div>
+
+    <div class="columna-derecha">
+      <section class="tarjeta">
+        <div class="cal-header">
+          <button type="button" class="cal-flecha" id="cal-anterior" aria-label="Mes anterior">‹</button>
+          <h2 id="cal-titulo"></h2>
+          <button type="button" class="cal-flecha" id="cal-siguiente" aria-label="Mes siguiente">›</button>
+          <button type="button" class="btn-hoy" id="cal-hoy">Hoy</button>
+        </div>
+        <div class="grid-semana-header">
+          <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span class="domingo">D</span>
+        </div>
+        <div class="grid-dias" id="grid-dias"></div>
+
+        <div class="cal-lista-dia">
+          <div class="cal-lista-dia-header">
+            <span class="cal-lista-dia-titulo" id="cal-lista-dia-titulo"></span>
+            <button type="button" class="btn-anadir-dia" id="btn-anadir-dia">+ Añadir a este día</button>
+          </div>
+          <ul class="lista-compromisos" id="lista-dia-seleccionado" style="padding-left:0; padding-right:0;"></ul>
+        </div>
+      </section>
+    </div>
+
+  </main>
+</div>
+
+<div class="modal-overlay oculto" id="modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <button type="button" class="modal-cerrar" id="btn-cerrar-modal" aria-label="Cerrar">×</button>
+    <h2 id="modal-titulo">Nuevo compromiso</h2>
+    <form id="form-compromiso">
+      <input type="hidden" id="input-id">
+
+      <div>
+        <label for="input-titulo">¿Qué tienes que hacer?</label>
+        <input type="text" id="input-titulo" required maxlength="200">
+      </div>
+
+      <div>
+        <label for="input-fecha">¿Qué día?</label>
+        <input type="date" id="input-fecha" required>
+      </div>
+
+      <div>
+        <label id="label-hora">¿A qué hora?</label>
+        <div class="tabs-hora" role="group" aria-labelledby="label-hora">
+          <button type="button" class="tab-hora activa" id="tab-todo-el-dia" data-modo="dia">Todo el día</button>
+          <button type="button" class="tab-hora" id="tab-a-una-hora" data-modo="hora">A una hora</button>
+        </div>
+        <div class="campo-hora oculto" id="campo-hora">
+          <input type="time" id="input-hora">
+        </div>
+      </div>
+
+      <div>
+        <label for="input-nota">Nota (opcional)</label>
+        <textarea id="input-nota" maxlength="500"></textarea>
+      </div>
+
+      <div class="modal-botones">
+        <button type="button" class="btn-eliminar oculto" id="btn-eliminar">Eliminar</button>
+        <button type="submit" class="btn-guardar" id="btn-guardar">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var CLAVE_ALMACENAMIENTO = "mi-agenda-v1";
+
+  var MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+  var MESES_ABREV = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  var DIAS_ABREV = ["L", "M", "X", "J", "V", "S", "D"];
+  var DIAS_LARGO = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"];
+
+  // ---------- Utilidades de fecha ----------
+  // Nunca usamos `new Date(iso)` para parsear AAAA-MM-DD: JS lo interpreta
+  // como medianoche UTC y en husos horarios negativos cae en el día anterior.
+
+  function pad2(n) { return n < 10 ? "0" + n : "" + n; }
+
+  function fechaAISO(date) {
+    return date.getFullYear() + "-" + pad2(date.getMonth() + 1) + "-" + pad2(date.getDate());
+  }
+
+  function isoAFecha(iso) {
+    var partes = iso.split("-").map(Number);
+    return new Date(partes[0], partes[1] - 1, partes[2]);
+  }
+
+  function hoyISO() {
+    return fechaAISO(new Date());
+  }
+
+  function indiceLunes(date) {
+    // getDay(): 0=domingo..6=sábado -> convertimos a 0=lunes..6=domingo
+    return (date.getDay() + 6) % 7;
+  }
+
+  function capitalizar(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  function formatoFechaLarga(iso) {
+    var d = isoAFecha(iso);
+    var texto = new Intl.DateTimeFormat("es-ES", { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(d);
+    return capitalizar(texto);
+  }
+
+  // ---------- Datos ----------
+
+  function generarId() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return Date.now().toString(36) + "-" + Math.random().toString(36).slice(2);
+  }
+
+  function cargarCompromisos() {
+    try {
+      var datos = JSON.parse(localStorage.getItem(CLAVE_ALMACENAMIENTO));
+      return Array.isArray(datos) ? datos : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function guardarCompromisos() {
+    localStorage.setItem(CLAVE_ALMACENAMIENTO, JSON.stringify(compromisos));
+  }
+
+  function ordenar(lista) {
+    return lista.slice().sort(function (a, b) {
+      if (!a.hora && b.hora) return -1;
+      if (a.hora && !b.hora) return 1;
+      if (a.hora && b.hora && a.hora !== b.hora) return a.hora < b.hora ? -1 : 1;
+      return 0;
+    });
+  }
+
+  function compromisosDe(iso) {
+    return ordenar(compromisos.filter(function (c) { return c.fecha === iso; }));
+  }
+
+  // ---------- Estado ----------
+
+  var compromisos = cargarCompromisos();
+  var hoy = isoAFecha(hoyISO());
+  var mesActual = hoy.getMonth();
+  var anioActual = hoy.getFullYear();
+  var diaSeleccionado = hoyISO();
+  var modoHoraActual = "dia";
+  var elementoConFoco = null;
+
+  // ---------- Atajos DOM ----------
+
+  function $(id) { return document.getElementById(id); }
+
+  var elFechaHoyLarga = $("fecha-hoy-larga");
+  var elTacoMes = $("taco-mes");
+  var elTacoNumero = $("taco-numero");
+  var elTacoDiaSemana = $("taco-dia-semana");
+  var elListaHoy = $("lista-hoy");
+  var elSemanaRango = $("semana-rango");
+  var elListaSemana = $("lista-semana");
+  var elCalTitulo = $("cal-titulo");
+  var elGridDias = $("grid-dias");
+  var elCalListaDiaTitulo = $("cal-lista-dia-titulo");
+  var elListaDiaSeleccionado = $("lista-dia-seleccionado");
+
+  var elModalOverlay = $("modal-overlay");
+  var elModalTitulo = $("modal-titulo");
+  var elForm = $("form-compromiso");
+  var elInputId = $("input-id");
+  var elInputTitulo = $("input-titulo");
+  var elInputFecha = $("input-fecha");
+  var elInputHora = $("input-hora");
+  var elInputNota = $("input-nota");
+  var elCampoHora = $("campo-hora");
+  var elBtnGuardar = $("btn-guardar");
+  var elBtnEliminar = $("btn-eliminar");
+
+  // ---------- Construcción de una fila de compromiso (con check + clic para editar) ----------
+
+  function crearFilaCompromiso(c) {
+    var li = document.createElement("li");
+    li.className = "fila-compromiso" + (c.hecho ? " hecho" : "");
+
+    var check = document.createElement("button");
+    check.type = "button";
+    check.className = "check" + (c.hecho ? " marcado" : "");
+    check.setAttribute("aria-pressed", c.hecho ? "true" : "false");
+    check.setAttribute("aria-label", c.hecho ? "Marcar como pendiente" : "Marcar como hecho");
+    check.addEventListener("click", function () {
+      c.hecho = !c.hecho;
+      guardarCompromisos();
+      renderTodo();
+    });
+
+    var boton = document.createElement("button");
+    boton.type = "button";
+    boton.className = "compromiso-texto";
+    boton.addEventListener("click", function () { abrirModalEditar(c); });
+
+    if (c.hora) {
+      var hora = document.createElement("span");
+      hora.className = "compromiso-hora";
+      hora.textContent = c.hora;
+      boton.appendChild(hora);
+    }
+
+    var titulo = document.createElement("span");
+    titulo.className = "compromiso-titulo";
+    titulo.textContent = c.titulo;
+    boton.appendChild(titulo);
+
+    if (c.nota) {
+      var nota = document.createElement("span");
+      nota.className = "compromiso-nota";
+      nota.textContent = c.nota;
+      boton.appendChild(nota);
+    }
+
+    li.appendChild(check);
+    li.appendChild(boton);
+    return li;
+  }
+
+  function renderListaEnCaja(ul, lista, textoVacio) {
+    var vacioPrevio = ul.parentNode.querySelector(".vacio");
+    if (vacioPrevio) vacioPrevio.remove();
+
+    ul.innerHTML = "";
+    if (lista.length === 0) {
+      var vacio = document.createElement("p");
+      vacio.className = "vacio";
+      vacio.textContent = textoVacio;
+      ul.parentNode.insertBefore(vacio, ul);
+      return;
+    }
+    lista.forEach(function (c) { ul.appendChild(crearFilaCompromiso(c)); });
+  }
+
+  // ---------- Render: cabecera ----------
+
+  function renderCabecera() {
+    elFechaHoyLarga.textContent = formatoFechaLarga(hoyISO());
+  }
+
+  // ---------- Render: HOY ----------
+
+  function renderHoy() {
+    var iso = hoyISO();
+    elTacoMes.textContent = MESES[hoy.getMonth()];
+    elTacoNumero.textContent = hoy.getDate();
+    elTacoDiaSemana.textContent = DIAS_LARGO[indiceLunes(hoy)];
+
+    renderListaEnCaja(elListaHoy, compromisosDe(iso), "Nada apuntado para hoy.");
+  }
+
+  // ---------- Render: ESTA SEMANA ----------
+
+  function lunesDeEstaSemana() {
+    var d = new Date(hoy);
+    d.setDate(d.getDate() - indiceLunes(hoy));
+    return d;
+  }
+
+  function renderSemana() {
+    var lunes = lunesDeEstaSemana();
+    var domingo = new Date(lunes);
+    domingo.setDate(lunes.getDate() + 6);
+
+    elSemanaRango.textContent = "· " + lunes.getDate() + " " + MESES_ABREV[lunes.getMonth()] + " – " + domingo.getDate() + " " + MESES_ABREV[domingo.getMonth()];
+
+    elListaSemana.innerHTML = "";
+    var isoHoy = hoyISO();
+
+    for (var i = 0; i < 7; i++) {
+      (function (i) {
+        var d = new Date(lunes);
+        d.setDate(lunes.getDate() + i);
+        var iso = fechaAISO(d);
+        var esHoy = iso === isoHoy;
+        var esDomingo = i === 6;
+
+        var fila = document.createElement("button");
+        fila.type = "button";
+        fila.className = "fila-semana" + (esHoy ? " hoy-semana" : "");
+        fila.addEventListener("click", function () {
+          diaSeleccionado = iso;
+          mesActual = d.getMonth();
+          anioActual = d.getFullYear();
+          renderCalendario();
+        });
+
+        var etiqueta = document.createElement("div");
+        etiqueta.className = "dia-etiqueta" + (esDomingo ? " domingo" : "");
+        etiqueta.innerHTML = '<span class="abrev">' + DIAS_ABREV[i] + '</span><span class="numero">' + d.getDate() + "</span>";
+
+        var listaDia = document.createElement("div");
+        listaDia.className = "lista-dia-semana";
+        var items = compromisosDe(iso);
+        if (items.length === 0) {
+          var libre = document.createElement("span");
+          libre.className = "libre";
+          libre.textContent = "libre";
+          listaDia.appendChild(libre);
+        } else {
+          items.forEach(function (c) {
+            var linea = document.createElement("span");
+            linea.className = "linea-semana" + (c.hecho ? " hecho-semana" : "");
+            var horaTxt = c.hora ? '<span class="hora-semana">' + c.hora + "</span>" : "";
+            linea.innerHTML = horaTxt + c.titulo.replace(/</g, "&lt;");
+            listaDia.appendChild(linea);
+          });
+        }
+
+        fila.appendChild(etiqueta);
+        fila.appendChild(listaDia);
+        elListaSemana.appendChild(fila);
+      })(i);
+    }
+  }
+
+  // ---------- Render: calendario del mes ----------
+
+  function renderCalendario() {
+    elCalTitulo.textContent = capitalizar(MESES[mesActual]) + " " + anioActual;
+
+    elGridDias.innerHTML = "";
+
+    var primerDiaMes = new Date(anioActual, mesActual, 1);
+    var huecosIniciales = indiceLunes(primerDiaMes);
+    var diasEnMes = new Date(anioActual, mesActual + 1, 0).getDate();
+    var totalCeldas = huecosIniciales + diasEnMes;
+    totalCeldas = Math.ceil(totalCeldas / 7) * 7;
+
+    var isoHoy = hoyISO();
+
+    for (var celda = 0; celda < totalCeldas; celda++) {
+      var numeroDia = celda - huecosIniciales + 1;
+
+      if (numeroDia < 1 || numeroDia > diasEnMes) {
+        var vacia = document.createElement("div");
+        vacia.className = "dia-mes vacio-celda";
+        elGridDias.appendChild(vacia);
+        continue;
+      }
+
+      (function (numeroDia, columna) {
+        var fecha = new Date(anioActual, mesActual, numeroDia);
+        var iso = fechaAISO(fecha);
+        var esHoy = iso === isoHoy;
+        var esSeleccionado = iso === diaSeleccionado;
+        var esDomingo = columna === 6;
+        var n = compromisosDe(iso).length;
+
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "dia-mes" + (esDomingo ? " domingo" : "") + (esHoy ? " hoy" : "") + (esSeleccionado ? " seleccionado" : "");
+        var etiquetaAria = numeroDia + " de " + MESES[mesActual] + (esHoy ? ", hoy" : "") + (n > 0 ? ", " + n + (n === 1 ? " compromiso" : " compromisos") : "");
+        btn.setAttribute("aria-label", etiquetaAria);
+        if (esSeleccionado) btn.setAttribute("aria-current", "date");
+
+        var numeroSpan = document.createElement("span");
+        numeroSpan.className = "numero-dia";
+        numeroSpan.textContent = numeroDia;
+        btn.appendChild(numeroSpan);
+
+        var puntos = document.createElement("span");
+        puntos.className = "puntos";
+        var puntosVisibles = Math.min(n, 3);
+        for (var p = 0; p < puntosVisibles; p++) {
+          var punto = document.createElement("span");
+          punto.className = "punto";
+          puntos.appendChild(punto);
+        }
+        btn.appendChild(puntos);
+
+        btn.addEventListener("click", function () {
+          diaSeleccionado = iso;
+          renderCalendario();
+        });
+
+        elGridDias.appendChild(btn);
+      })(numeroDia, celda % 7);
+    }
+
+    renderListaDiaSeleccionado();
+  }
+
+  function renderListaDiaSeleccionado() {
+    var d = isoAFecha(diaSeleccionado);
+    var texto = DIAS_LARGO[indiceLunes(d)] + " " + d.getDate() + " de " + MESES[d.getMonth()];
+    elCalListaDiaTitulo.textContent = capitalizar(texto);
+
+    renderListaEnCaja(elListaDiaSeleccionado, compromisosDe(diaSeleccionado), "Nada apuntado para este día.");
+  }
+
+  function renderTodo() {
+    renderCabecera();
+    renderHoy();
+    renderSemana();
+    renderCalendario();
+  }
+
+  // ---------- Modal ----------
+
+  function establecerModoHora(modo) {
+    modoHoraActual = modo;
+    $("tab-todo-el-dia").classList.toggle("activa", modo === "dia");
+    $("tab-a-una-hora").classList.toggle("activa", modo === "hora");
+    elCampoHora.classList.toggle("oculto", modo !== "hora");
+  }
+
+  function mostrarModal() {
+    elementoConFoco = document.activeElement;
+    elModalOverlay.classList.remove("oculto");
+    elInputTitulo.focus();
+  }
+
+  function cerrarModal() {
+    elModalOverlay.classList.add("oculto");
+    if (elementoConFoco && typeof elementoConFoco.focus === "function") {
+      elementoConFoco.focus();
+    }
+  }
+
+  function abrirModalNuevo(fechaPredeterminada) {
+    elForm.reset();
+    elInputId.value = "";
+    elModalTitulo.textContent = "Nuevo compromiso";
+    elInputFecha.value = fechaPredeterminada || diaSeleccionado || hoyISO();
+    establecerModoHora("dia");
+    elBtnEliminar.classList.add("oculto");
+    elBtnGuardar.textContent = "Guardar";
+    mostrarModal();
+  }
+
+  function abrirModalEditar(c) {
+    elForm.reset();
+    elInputId.value = c.id;
+    elModalTitulo.textContent = "Editar compromiso";
+    elInputTitulo.value = c.titulo;
+    elInputFecha.value = c.fecha;
+    elInputNota.value = c.nota || "";
+    if (c.hora) {
+      establecerModoHora("hora");
+      elInputHora.value = c.hora;
+    } else {
+      establecerModoHora("dia");
+    }
+    elBtnEliminar.classList.remove("oculto");
+    elBtnGuardar.textContent = "Guardar cambios";
+    mostrarModal();
+  }
+
+  $("btn-nuevo").addEventListener("click", function () { abrirModalNuevo(diaSeleccionado || hoyISO()); });
+  $("btn-anadir-dia").addEventListener("click", function () { abrirModalNuevo(diaSeleccionado); });
+  $("btn-cerrar-modal").addEventListener("click", cerrarModal);
+
+  elModalOverlay.addEventListener("click", function (e) {
+    if (e.target === elModalOverlay) cerrarModal();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !elModalOverlay.classList.contains("oculto")) {
+      cerrarModal();
+    }
+  });
+
+  $("tab-todo-el-dia").addEventListener("click", function () { establecerModoHora("dia"); });
+  $("tab-a-una-hora").addEventListener("click", function () {
+    establecerModoHora("hora");
+    elInputHora.focus();
+  });
+
+  elForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var titulo = elInputTitulo.value.trim();
+    var fecha = elInputFecha.value;
+    if (!titulo || !fecha) return;
+
+    var hora = (modoHoraActual === "hora" && elInputHora.value) ? elInputHora.value : null;
+    var nota = elInputNota.value.trim() || null;
+    var id = elInputId.value;
+
+    if (id) {
+      var existente = compromisos.find(function (c) { return c.id === id; });
+      if (existente) {
+        existente.titulo = titulo;
+        existente.fecha = fecha;
+        existente.hora = hora;
+        existente.nota = nota;
+      }
+    } else {
+      compromisos.push({ id: generarId(), titulo: titulo, fecha: fecha, hora: hora, nota: nota, hecho: false });
+    }
+
+    guardarCompromisos();
+
+    var fechaObj = isoAFecha(fecha);
+    mesActual = fechaObj.getMonth();
+    anioActual = fechaObj.getFullYear();
+    diaSeleccionado = fecha;
+
+    cerrarModal();
+    renderTodo();
+  });
+
+  $("btn-eliminar").addEventListener("click", function () {
+    var id = elInputId.value;
+    if (!id) return;
+    var ok = window.confirm("¿Seguro que quieres eliminar este compromiso? No se puede deshacer.");
+    if (!ok) return;
+    compromisos = compromisos.filter(function (c) { return c.id !== id; });
+    guardarCompromisos();
+    cerrarModal();
+    renderTodo();
+  });
+
+  // ---------- Navegación del calendario ----------
+
+  $("cal-anterior").addEventListener("click", function () {
+    mesActual--;
+    if (mesActual < 0) { mesActual = 11; anioActual--; }
+    renderCalendario();
+  });
+
+  $("cal-siguiente").addEventListener("click", function () {
+    mesActual++;
+    if (mesActual > 11) { mesActual = 0; anioActual++; }
+    renderCalendario();
+  });
+
+  $("cal-hoy").addEventListener("click", function () {
+    hoy = isoAFecha(hoyISO());
+    mesActual = hoy.getMonth();
+    anioActual = hoy.getFullYear();
+    diaSeleccionado = hoyISO();
+    renderTodo();
+  });
+
+  // ---------- Actualización automática a medianoche ----------
+
+  function programarActualizacionMedianoche() {
+    var ahora = new Date();
+    var proximaMedianoche = new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate() + 1, 0, 0, 5);
+    var ms = proximaMedianoche - ahora;
+    setTimeout(function () {
+      hoy = isoAFecha(hoyISO());
+      mesActual = hoy.getMonth();
+      anioActual = hoy.getFullYear();
+      diaSeleccionado = hoyISO();
+      renderTodo();
+      programarActualizacionMedianoche();
+    }, ms);
+  }
+
+  // ---------- Arranque ----------
+
+  renderTodo();
+  programarActualizacionMedianoche();
+})();
+</script>
+</body>
+</html>
