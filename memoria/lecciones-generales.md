@@ -17,3 +17,17 @@ aplican a varios. Se actualiza automáticamente durante las conversaciones.
     para buscar y sugerir otros "skills" (paquetes de instrucciones) que
     puedan ayudar en tareas futuras; Alex pidió que se avise cuando
     convenga usar uno.
+- (2026-08-04) — <a id="conector-google-drive-sin-herramientas"></a>Alex
+  conectó su cuenta de Google Drive en Configuración → Conectores de
+  claude.ai (los pasos: perfil abajo a la izquierda → Configuración →
+  Personalizar → Conectores → Google Drive → Conectar → iniciar sesión
+  con Google), y quedó "conectado" de verdad (con botón "Desconectar"
+  visible). Aun así, Claude no pudo usarlo: la propia pantalla de
+  Conectores mostraba "Este conector no tiene herramientas disponibles",
+  y no aparecía ninguna herramienta `mcp__claude_ai_*` para Drive/Sheets
+  ni siquiera abriendo una conversación nueva. No se encontró la causa ni
+  una forma de arreglarlo desde el chat. **Antes de prometerle a Alex una
+  función que dependa de un conector (Google Drive, Sheets, etc.), hay
+  que confirmar primero que existan herramientas `mcp__claude_ai_*`
+  reales para ese conector**, no asumir que "conectado" implica
+  "utilizable".
