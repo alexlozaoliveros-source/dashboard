@@ -1,9 +1,9 @@
 # Bot de trading de acciones (análisis y alertas)
 
 - **Tipo:** Programación
-- **Estado:** 🟡 Pausado (2026-08-06 — 6 pruebas rigurosas sin encontrar
-  ventaja real; Alex decidió explorar invertir a largo plazo en vez de
-  seguir con day trading. Ver detalle al final del archivo.)
+- **Estado:** 🟢 Activo (reabierto 2026-08-06 — Alex había elegido pausar
+  y explorar largo plazo, pero unos minutos después pidió seguir con el
+  day trading. Ver nota al final del archivo.)
 - **Inicio:** 2026-08-05
 - **Última actualización:** 2026-08-06
 
@@ -312,6 +312,13 @@ públicas y conocidas — si funcionaran de forma confiable, ya las habrían
 aprovechado firmas más rápidas hasta que dejaran de funcionar.
 
 **Alex decidió pausar este proyecto (day trading) y explorar invertir a
-largo plazo en su lugar** — un proyecto nuevo y distinto, ver
-`proyectos/inversion-largo-plazo.md`.
-   rendiría más en otro proyecto.
+largo plazo en su lugar.**
+
+**Actualización, unos minutos después:** Alex volvió a pedir seguir con el
+day trading ("quiero que crees cómo invertir en la bolsa diario o en la de
+minutos") — se reabre el proyecto. Quedó pendiente aclarar con él si esto
+es: (a) seguir buscando una estrategia de day trading real (ya se
+agotaron 6 enfoques rigurosos sin éxito, haría falta una idea
+genuinamente nueva, no repetir lo mismo), o (b) quería una explicación de
+cómo funciona/se hace el day trading en general, no necesariamente seguir
+el proyecto de búsqueda.
