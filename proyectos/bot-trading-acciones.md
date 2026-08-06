@@ -3,7 +3,7 @@
 - **Tipo:** Programación
 - **Estado:** 🟢 Activo
 - **Inicio:** 2026-08-05
-- **Última actualización:** 2026-08-05
+- **Última actualización:** 2026-08-06
 
 ## Qué es
 
@@ -70,6 +70,22 @@ funciona.
   primero sobre todo el mercado, y el análisis fino solo sobre la lista
   corta que queda.
 
+- (2026-08-06) — **Alex pidió no avanzar de la Fase 2 hasta encontrar
+  estrategias con 90% de acierto** (después lo bajó a "3 de cada 4"),
+  buscando entre muchas variantes sin parar, incluso creando estrategias
+  propias, y usando las herramientas de investigación necesarias. Se le
+  explicó un problema real antes de hacerlo así: buscar entre muchas
+  combinaciones apuntando a un número fijo, sin separar datos de prueba y
+  confirmación, casi garantiza "encontrar" algo que parece bueno por pura
+  casualidad — ya le había pasado a Pulso (132 combinaciones, y hasta las 2
+  "ganadoras" eran menos de lo esperable por azar). **Alex aceptó el
+  enfoque corregido: buscar en serio, pero medir por ganancia promedio
+  después de costos, confirmada con datos que el sistema no vio antes
+  (walk-forward), no por tasa de acierto sola.**
+- (2026-08-06) — Alex se fue a dormir y pidió seguir solo, sin preguntar,
+  sin parar hasta conseguirlo. Se siguió trabajando toda la noche con el
+  método acordado (ver resultado completo abajo, en "Notas sueltas").
+
 ## Lecciones aprendidas
 
 - (2026-08-05) — Cuando Alex pega un plan técnico que dice tener "reglas
@@ -79,6 +95,25 @@ funciona.
   opere solo"), sin darse cuenta del cambio. Conviene señalarlo y confirmar
   antes de seguir. Ver también la lección de Pulso: no hay ventaja
   confirmada hasta que los datos reales lo demuestren.
+- (2026-08-06) — **"Buscar hasta encontrar X% de acierto" es una trampa
+  estadística, no una meta razonable.** Si se prueban muchas estrategias o
+  variantes apuntando a un número fijo, casi seguro se "encuentra" algo que
+  lo cumple por pura casualidad en los datos ya pasados — y casi seguro
+  falla con dinero real, porque nunca hubo ventaja de verdad. La forma
+  correcta: separar datos de "prueba" y "confirmación" que nunca se
+  mira hasta el final (walk-forward), y corregir el umbral de confianza
+  según cuántas cosas se probaron a la vez (corrección por pruebas
+  múltiples). Medir por ganancia promedio después de costos, no por tasa
+  de acierto sola (una estrategia puede ganar dinero acertando solo 1 de
+  cada 3 veces, si cuando gana gana mucho más de lo que pierde cuando
+  pierde).
+- (2026-08-06) — Al construir el primer script de búsqueda automática, se
+  cometió un error real: marcaba como "candidata real" cualquier resultado
+  estadísticamente significativo, sin fijarse si la ganancia era positiva o
+  negativa — así que reportaba pérdidas muy consistentes como si fueran
+  buenas noticias. Se detectó al revisar los números antes de reportarlos
+  a Alex, y se corrigió. Lección: "es estadísticamente significativo" no
+  es lo mismo que "es bueno" — hay que revisar siempre el signo.
 
 ## Notas sueltas
 
@@ -136,3 +171,50 @@ funciona.
     definitiva — con 2 estrategias sin ajustar es prematuro cerrar el
     tema, pero el patrón es parecido al de Pulso: hasta ahora, ningún
     "no arreglado" mejora las cosas por sí solo.
+
+### (2026-08-06) Fase 2 completa: resultado final de la búsqueda de ventaja
+
+Se construyeron las 8 estrategias que faltaban (ruptura con volumen, VWAP,
+momentum, Opening Range Breakout, Gap and Go, pullback, reversión por
+divergencia, rango/soporte-resistencia), el motor de confluencia, y las
+herramientas para buscar de forma seria sin engañarse (walk-forward,
+prueba de significancia estadística, corrección por pruebas múltiples).
+Reporte técnico completo en `~/bot-trading-acciones/report_fase2.md`.
+
+Se corrieron **3 pruebas rigurosas** sobre 40 acciones (las de mayor
+volumen), 21 días de velas de 1 minuto, con costos reales de operar:
+
+1. **Las 10 estrategias tal como están:** las 10 pierden dinero. En 8 de
+   10, la pérdida es tan consistente que es estadísticamente segura (no es
+   casualidad del muestreo) — con miles de operaciones de por medio en la
+   mayoría.
+2. **Diagnóstico + ajuste:** se descubrió que en varias estrategias
+   (sobre todo RSI y reversión), incluso las operaciones que llegaban a la
+   meta de ganancia terminaban en pérdida neta, porque el "premio" que se
+   buscaba era más chico que el costo real de operar. Se probó exigir que
+   el riesgo de cada operación fuera al menos 3 veces el costo — mejoró la
+   tasa de acierto en varias, pero **la ganancia promedio siguió siendo
+   negativa en 8 de 9 estrategias con datos suficientes**, y 6 de ellas
+   siguen perdiendo de forma estadísticamente segura.
+3. **Motor de confluencia** (exigir que 2 o 3 de las 10 coincidan a la
+   vez): tampoco funcionó — combinar estrategias sin ventaja individual no
+   crea una ventaja de la nada.
+
+**Conclusión honesta: no se encontró ninguna estrategia con ventaja real,
+confirmada con datos que el sistema no vio antes, sobre este grupo de
+acciones en velas de 1 minuto.** No es "no se buscó lo suficiente" — se
+probaron 10 estrategias conocidas, un ajuste basado en un diagnóstico
+real, y 2 formas de combinarlas (sin contar las 2 pruebas previas de la
+Fase 1); la mayoría pierde de forma estadísticamente segura, no por
+casualidad.
+
+**Decisión pendiente de Alex** (para cuando despierte, no se avanzó más
+sin su aprobación, seguiendo la regla del proyecto de que cada fase
+necesita su visto bueno): con este resultado, ¿qué sigue? Ideas honestas,
+ninguna probada todavía:
+1. Aceptar el resultado y pausar/cerrar esta fase (como con Pulso).
+2. Probar con acciones más grandes/líquidas en vez de $1-$20 (el spread
+   real pesa menos ahí).
+3. Probar con velas más largas (5 o 15 minutos) en vez de 1 minuto.
+4. Un enfoque de aprendizaje automático con validación estricta — más
+   grande y con más riesgo de auto-engaño si no se hace con cuidado.
