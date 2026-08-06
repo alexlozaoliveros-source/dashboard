@@ -9,5 +9,6 @@ Vista general de todos los proyectos. El detalle de cada uno está en
 | [Orquestador de IAs (VSCode)](proyectos/orquestador-ia-vscode.md) | Programación | 🟢 Activo | 2026-07-30 | Herramienta propia para que varias IAs colaboren/debatan en una misma tarea dentro de VSCode, en vez de elegir una manualmente. |
 | [Pulso — bot Polymarket](proyectos/pulso-polymarket-bot.md) | Programación | 🟢 Activo | 2026-07-30 | Sistema que mide si hay oportunidad real de ganar dinero poniendo órdenes pasivas en mercados de 5 min de Polymarket, antes de arriesgar dinero real. Fase 0: recolector de datos. |
 | [Mi agenda](proyectos/mi-agenda.md) | Programación | 🟢 Activo | 2026-08-04 | Agenda personal en una sola página web (estilo "hoja de calendario de taco"), sin internet ni instalación, guarda los compromisos en el navegador. |
+| [Bot de trading de acciones](proyectos/bot-trading-acciones.md) | Programación | 🟢 Activo | 2026-08-05 | Sistema que vigila acciones en vivo, genera señales de compra/venta y avisa por Telegram; validación con datos reales antes de operar solo con dinero real. |
 
 **Estados posibles:** 🟢 Activo · 🟡 Pausado · ⚪ Terminado
