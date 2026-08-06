@@ -200,21 +200,43 @@ volumen), 21 días de velas de 1 minuto, con costos reales de operar:
    vez): tampoco funcionó — combinar estrategias sin ventaja individual no
    crea una ventaja de la nada.
 
-**Conclusión honesta: no se encontró ninguna estrategia con ventaja real,
-confirmada con datos que el sistema no vio antes, sobre este grupo de
-acciones en velas de 1 minuto.** No es "no se buscó lo suficiente" — se
-probaron 10 estrategias conocidas, un ajuste basado en un diagnóstico
-real, y 2 formas de combinarlas (sin contar las 2 pruebas previas de la
-Fase 1); la mayoría pierde de forma estadísticamente segura, no por
-casualidad.
+### (2026-08-06) Prueba 4, pedida por Alex: velas más grandes (5 y 15 min)
 
-**Decisión pendiente de Alex** (para cuando despierte, no se avanzó más
-sin su aprobación, seguiendo la regla del proyecto de que cada fase
-necesita su visto bueno): con este resultado, ¿qué sigue? Ideas honestas,
-ninguna probada todavía:
-1. Aceptar el resultado y pausar/cerrar esta fase (como con Pulso).
+Alex despertó, vio el resultado, y pidió probar con velas más grandes —
+aclarando que el objetivo no es "duplicar la plata", sino simplemente
+salir positivo, y pensando en un presupuesto real de $200 sin arriesgarlo
+todo de una vez. Se agregó también la traducción de resultados a dólares
+(arriesgando 1% = $2 por operación, como pide el manejo de riesgo del plan
+original) para que sea más concreto.
+
+Se repitió la misma prueba rigurosa con velas de **5 minutos** y de **15
+minutos** (mismo universo de 40 acciones, 90 días de historial, filtro de
+riesgo mínimo ya validado):
+
+- **5 minutos:** las 10 siguen perdiendo. Dos (pullback y reversión)
+  mejoraron mucho, casi a cero (-0.11% y -0.05%), pero sin cruzar a
+  positivo.
+- **15 minutos:** las 10 siguen perdiendo. Contra lo esperado, esas mismas
+  dos **empeoraron** en vez de seguir mejorando (reversión pasó a -0.67%)
+  — o sea, "vela más grande = mejor" no es una regla simple que se cumpla
+  siempre.
+
+**Con esto ya se probaron 3 escalas de tiempo (1, 5 y 15 minutos) y
+ninguna dio una estrategia con ventaja real.**
+
+**Conclusión honesta: no se encontró ninguna estrategia con ventaja real,
+confirmada con datos que el sistema no vio antes, en ninguna de las 3
+escalas de tiempo probadas, sobre este grupo de acciones.** No es "no se
+buscó lo suficiente" — se probaron 10 estrategias conocidas, un ajuste
+basado en un diagnóstico real, 2 formas de combinarlas, y 3 tamaños de
+vela distintos (sin contar las 2 pruebas previas de la Fase 1); la mayoría
+pierde de forma estadísticamente segura, no por casualidad.
+
+**Decisión pendiente de Alex:** con este resultado, ¿qué sigue? Ideas
+honestas, ninguna probada todavía:
+1. Aceptar el resultado y pausar/cerrar esta fase (como con Pulso) — ya
+   son 2 proyectos de trading con el mismo patrón de "no hay ventaja".
 2. Probar con acciones más grandes/líquidas en vez de $1-$20 (el spread
-   real pesa menos ahí).
-3. Probar con velas más largas (5 o 15 minutos) en vez de 1 minuto.
-4. Un enfoque de aprendizaje automático con validación estricta — más
+   real pesa menos ahí) — la variable que todavía no se cambió.
+3. Un enfoque de aprendizaje automático con validación estricta — más
    grande y con más riesgo de auto-engaño si no se hace con cuidado.
