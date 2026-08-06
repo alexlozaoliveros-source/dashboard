@@ -1,7 +1,9 @@
 # Bot de trading de acciones (análisis y alertas)
 
 - **Tipo:** Programación
-- **Estado:** 🟢 Activo
+- **Estado:** 🟡 Pausado (2026-08-06 — 6 pruebas rigurosas sin encontrar
+  ventaja real; Alex decidió explorar invertir a largo plazo en vez de
+  seguir con day trading. Ver detalle al final del archivo.)
 - **Inicio:** 2026-08-05
 - **Última actualización:** 2026-08-06
 
@@ -294,4 +296,22 @@ de vela, y hasta el único resultado positivo que apareció no se sostuvo —
    grande, no un ajuste rápido.
 3. Aceptar que en mercados líquidos y bien estudiados no suele sobrar
    "dinero fácil" con estrategias conocidas, y considerar si el tiempo
+   rendiría más en otro proyecto.
+
+### (2026-08-06) Decisión final: se pausa este proyecto
+
+Alex preguntó "¿entonces cómo es posible que la gente gane en bolsa?" — se
+le explicó la diferencia entre invertir a largo plazo (comprar y mantener,
+funciona por el crecimiento de las empresas con el tiempo, no hace falta
+predecir nada minuto a minuto) y operar de corto plazo (day trading, lo
+que se probó acá — la mayoría de la gente pierde dinero con esto, y los
+pocos que ganan consistentemente suelen tener ventajas de velocidad,
+datos, o capital que un proyecto como este no puede igualar). Eso también
+explica el resultado de las 6 pruebas: las estrategias que se probaron son
+públicas y conocidas — si funcionaran de forma confiable, ya las habrían
+aprovechado firmas más rápidas hasta que dejaran de funcionar.
+
+**Alex decidió pausar este proyecto (day trading) y explorar invertir a
+largo plazo en su lugar** — un proyecto nuevo y distinto, ver
+`proyectos/inversion-largo-plazo.md`.
    rendiría más en otro proyecto.
