@@ -117,3 +117,22 @@ funciona.
   - Recordatorio: con solo 2 estrategias simples y sin separar datos de
     "entrenamiento" y de "prueba" (walk-forward), es muy pronto para
     concluir nada — eso es parte de fases posteriores del plan.
+- (2026-08-06) — **Segundo backtest real, esta vez con velas de 1 minuto**
+  (las mismas 143 candidatas, ~10 días hábiles, 417,612 velas descargadas
+  — este sí es el que de verdad importa para "día trading de minutos"):
+  - Cruce de medias móviles: 8,412 operaciones, 40.4% de acierto, **pierde**
+    0.02% en promedio por operación.
+  - RSI: 14,908 operaciones, 22.7% de acierto (bastante menos de la mitad),
+    **pierde** 0.11% en promedio por operación.
+  - Con tantas operaciones (miles), esto no es ruido — es una señal bastante
+    clara de que, tal como están hoy, estas dos estrategias simples no
+    tienen ventaja en velas de 1 minuto sobre este grupo de acciones. El
+    RSI en particular acierta muy por debajo de la mitad, lo que sugiere
+    que estas acciones tienden a seguir la tendencia en vez de "rebotar"
+    cuando llegan a zona de sobrecompra/sobreventa — justo lo contrario de
+    lo que asume la estrategia.
+  - Sigue pendiente probar walk-forward (separar datos de prueba) y las
+    demás estrategias del plan (Fase 2) antes de sacar una conclusión
+    definitiva — con 2 estrategias sin ajustar es prematuro cerrar el
+    tema, pero el patrón es parecido al de Pulso: hasta ahora, ningún
+    "no arreglado" mejora las cosas por sí solo.
