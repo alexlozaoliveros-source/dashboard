@@ -232,11 +232,41 @@ basado en un diagnóstico real, 2 formas de combinarlas, y 3 tamaños de
 vela distintos (sin contar las 2 pruebas previas de la Fase 1); la mayoría
 pierde de forma estadísticamente segura, no por casualidad.
 
+### (2026-08-06) Prueba 5, pedida por Alex: aprendizaje automático
+
+Alex pidió ir con aprendizaje automático "hasta que se pueda lograr". Antes
+de construir una estrategia completa, se hizo la pregunta correcta
+primero: ¿el modelo predice algo real, confirmado con datos que nunca vio?
+Se armaron 11 variables por vela (distancias a medias móviles y VWAP, RSI,
+volumen relativo, retornos recientes, rango, hora del día) y se entrenaron
+2 modelos simples y regularizados (regresión Ridge, y un Random Forest
+chico — nada de redes neuronales, que memorizan más de lo que aprenden),
+sobre 192,693 velas reales.
+
+**Resultado clarísimo: ambos modelos memorizaron el pasado, no aprendieron
+un patrón real.** En los datos de entrenamiento parecían "encontrar algo"
+(con tantos datos, hasta una relación minúscula se ve significativa en el
+papel), pero esa relación se cayó a prácticamente cero — y sin
+significancia estadística — en los datos que el modelo nunca había visto.
+Por eso **no se construyó ninguna estrategia de comprar/vender sobre este
+modelo**: hacerlo habría sido construir sobre ruido, no sobre una señal
+real. Reporte técnico completo (con la tabla de números) en
+`~/bot-trading-acciones/report_fase2.md`.
+
+**Con esto, dentro de este proyecto ya se probaron 2 enfoques
+completamente distintos — reglas fijas conocidas (10 estrategias, en 3
+tamaños de vela) y aprendizaje automático (2 modelos) — y ninguno mostró
+ventaja real confirmada fuera de muestra.**
+
 **Decisión pendiente de Alex:** con este resultado, ¿qué sigue? Ideas
 honestas, ninguna probada todavía:
 1. Aceptar el resultado y pausar/cerrar esta fase (como con Pulso) — ya
-   son 2 proyectos de trading con el mismo patrón de "no hay ventaja".
+   son 2 proyectos de trading con el mismo patrón de "no hay ventaja", y
+   dentro de este proyecto, 2 enfoques distintos sin éxito.
 2. Probar con acciones más grandes/líquidas en vez de $1-$20 (el spread
-   real pesa menos ahí) — la variable que todavía no se cambió.
-3. Un enfoque de aprendizaje automático con validación estricta — más
-   grande y con más riesgo de auto-engaño si no se hace con cuidado.
+   real pesa menos ahí) — la variable principal que todavía no se cambió
+   en ninguna de las 5 pruebas.
+3. Agregar datos que hoy no se usan (noticias, fundamentales, libro de
+   órdenes) — el modelo de aprendizaje automático solo tuvo precio y
+   volumen; el patrón, si existe, podría necesitar información que no está
+   en las velas.
