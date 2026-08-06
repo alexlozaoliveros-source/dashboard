@@ -258,15 +258,40 @@ completamente distintos — reglas fijas conocidas (10 estrategias, en 3
 tamaños de vela) y aprendizaje automático (2 modelos) — y ninguno mostró
 ventaja real confirmada fuera de muestra.**
 
-**Decisión pendiente de Alex:** con este resultado, ¿qué sigue? Ideas
-honestas, ninguna probada todavía:
+### (2026-08-06) Prueba 6, pedida por Alex: acciones grandes y líquidas
+
+Alex pidió probar la variable que faltaba: acciones grandes y conocidas
+(SPY, NVDA, AAPL, MSFT, AMZN, META, GOOGL, TSLA, etc.) en vez de las de
+precio $1-$20, con un costo de operar más bajo y realista para ese tipo de
+acción (0.05% en vez de 0.15% por lado — el spread real es más angosto).
+
+**Por primera vez en toda la búsqueda apareció un resultado positivo:**
+Opening Range Breakout (comprar/vender cuando el precio rompe el rango de
+los primeros 15 minutos) ganó +0.21% por operación, con significancia
+estadística cruda (p=0.03) — pero no pasaba la corrección por haber
+probado 9 estrategias a la vez.
+
+**Se hizo una prueba de confirmación** (solo esa estrategia, con el doble
+de datos históricos, sin penalización por múltiples pruebas porque ya
+estaba elegida de antemano): **el resultado no se sostuvo.** Con más
+datos, la ganancia bajó a la mitad (+0.10%) y dejó de ser
+estadísticamente significativa — la señal se debilitó en vez de
+fortalecerse, justo lo que se esperaría si el resultado anterior fue
+casualidad. En dólares: prácticamente $0 por operación de ganancia
+promedio con el presupuesto de $200. El sistema de validación funcionó
+bien: generó una hipótesis honesta y no se dejó engañar cuando no se
+sostuvo.
+
+**Decisión pendiente de Alex:** con este resultado — 6 pruebas rigurosas,
+2 enfoques (reglas y aprendizaje automático), 2 tipos de acción, 3 tamaños
+de vela, y hasta el único resultado positivo que apareció no se sostuvo —
+¿qué sigue?
 1. Aceptar el resultado y pausar/cerrar esta fase (como con Pulso) — ya
-   son 2 proyectos de trading con el mismo patrón de "no hay ventaja", y
-   dentro de este proyecto, 2 enfoques distintos sin éxito.
-2. Probar con acciones más grandes/líquidas en vez de $1-$20 (el spread
-   real pesa menos ahí) — la variable principal que todavía no se cambió
-   en ninguna de las 5 pruebas.
-3. Agregar datos que hoy no se usan (noticias, fundamentales, libro de
-   órdenes) — el modelo de aprendizaje automático solo tuvo precio y
-   volumen; el patrón, si existe, podría necesitar información que no está
-   en las velas.
+   son 2 proyectos de trading con el mismo patrón, y en este ya se
+   agotaron los enfoques razonables.
+2. Agregar datos que hoy no se usan (noticias, fundamentales, libro de
+   órdenes) — todo lo probado usó solo precio y volumen. Es un cambio
+   grande, no un ajuste rápido.
+3. Aceptar que en mercados líquidos y bien estudiados no suele sobrar
+   "dinero fácil" con estrategias conocidas, y considerar si el tiempo
+   rendiría más en otro proyecto.
