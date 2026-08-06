@@ -92,7 +92,28 @@ funciona.
   eso confirma que la lógica del código funciona como se espera, pero
   **todavía no se probó con datos reales de mercado** porque falta una
   pieza: las llaves de la cuenta de Alpaca.
-- **Pendiente de Alex para poder seguir:** crear una cuenta gratis en
-  Alpaca (alpaca.markets) y conseguir las llaves de la cuenta de "paper
-  trading" (dinero falso, sin ningún riesgo) para poder descargar datos
-  reales y correr el primer backtest de verdad.
+- (2026-08-06) — Alex creó la cuenta de Alpaca y consiguió las llaves de
+  paper trading. Se guardaron en el archivo `.env` de la carpeta del
+  proyecto (no se suben a ningún lado). Se encontraron y corrigieron 2
+  errores chicos al conectar de verdad: el script no encontraba sus propios
+  archivos (import mal armado), y el plan gratis de Alpaca no deja pedir
+  datos "recientes" del feed completo (SIP) — hay que pedirlos del feed de
+  una sola bolsa (IEX), que sí es gratis en tiempo real.
+- (2026-08-06) — **Primer backtest real (con datos de verdad), resultado
+  preliminar:** con el filtro se encontraron 143 acciones candidatas
+  (precio $1-$20, volumen alto) sobre 180 días de historial **diario**
+  (una vela por día, no por minuto):
+  - Cruce de medias móviles: 387 operaciones, 48.1% de acierto, ganancia
+    promedio de apenas 0.01% por operación (ya con costos descontados) —
+    básicamente empate, no alcanza a verse como una ventaja real.
+  - RSI: 936 operaciones, 41.8% de acierto, **pierde** 0.49% en promedio
+    por operación.
+  - **Ojo con esto:** esta primera prueba usó velas de un día completo,
+    no de minutos — es solo para confirmar que el código funciona de
+    punta a punta con datos reales, todavía no es la prueba real de "día
+    trading de minutos" que Alex quiere. Falta repetir esto con datos
+    intradía (minuto a minuto) antes de sacar una conclusión sobre si hay
+    oportunidad real.
+  - Recordatorio: con solo 2 estrategias simples y sin separar datos de
+    "entrenamiento" y de "prueba" (walk-forward), es muy pronto para
+    concluir nada — eso es parte de fases posteriores del plan.
