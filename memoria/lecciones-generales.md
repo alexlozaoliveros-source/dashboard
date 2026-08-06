@@ -31,3 +31,17 @@ aplican a varios. Se actualiza automáticamente durante las conversaciones.
   que confirmar primero que existan herramientas `mcp__claude_ai_*`
   reales para ese conector**, no asumir que "conectado" implica
   "utilizable".
+- (2026-08-06) — Cuando Alex pide que una página "se actualice sola" o
+  "se vea igual en todos lados", eso **no se puede hacer con una página
+  suelta (Artifact)** — esas no pueden hablar con servicios externos.
+  Hace falta una app de verdad con hosting propio, como se hizo con la
+  quiniela (cuenta de Vercel de Alex + un lugar donde guardar los datos).
+  Para guardar solo una listita de datos (no tablas relacionadas como la
+  quiniela), Vercel Blob es más simple que meter una base de datos
+  Postgres — ver detalle en [[mi-agenda]].
+- (2026-08-06) — **Las funciones de servidor en Vercel cachean sus
+  respuestas por default.** Si una función devuelve datos que cambian
+  (no un archivo fijo), hay que mandar explícitamente el header
+  `Cache-Control: no-store` en la respuesta — si no, a veces Vercel sirve
+  una copia vieja guardada en su red en vez de ejecutar la función de
+  nuevo. Aplica a cualquier proyecto en Vercel, no solo a Mi agenda.
