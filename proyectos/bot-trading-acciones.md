@@ -321,4 +321,34 @@ es: (a) seguir buscando una estrategia de day trading real (ya se
 agotaron 6 enfoques rigurosos sin éxito, haría falta una idea
 genuinamente nueva, no repetir lo mismo), o (b) quería una explicación de
 cómo funciona/se hace el day trading en general, no necesariamente seguir
-el proyecto de búsqueda.
+el proyecto de búsqueda. Alex contestó: "investiga la nueva idea, créala,
+y no pares hasta tenerla".
+
+### (2026-08-06) Prueba 7: idea nueva — Gap and Go con noticias reales
+
+Se conectó la API de noticias de Alpaca (real, incluida en el plan
+gratis) con análisis de sentimiento simple (VADER), para exigir que un
+"hueco de apertura" (Gap and Go) esté confirmado por una noticia real —
+justo lo que el plan original pedía desde el inicio y antes no se pudo
+hacer por falta de datos.
+
+**Resultado: inconcluso, no un "no".** La combinación de condiciones
+(hueco grande + volumen alto + noticia real + sentimiento alineado) es
+tan poco frecuente en acciones grandes que ni con 90 días (18
+operaciones) ni con un año completo de datos (43 operaciones, 32,179
+noticias reales descargadas) se juntó una muestra confiable. El resultado
+se ve llamativo (71% de acierto en la parte de prueba) pero con tan pocas
+operaciones no se puede confiar en el número — necesitaría un umbral de
+hueco más bajo, muchas más acciones, o mucho más tiempo para probarse de
+verdad. Reporte técnico completo en
+`~/bot-trading-acciones/report_fase2.md`.
+
+**Con esto van 7 pruebas rigurosas en total** (10 estrategias, ajuste de
+riesgo, confluencia, 3 tamaños de vela, aprendizaje automático, acciones
+líquidas, y ahora noticias reales) — 6 sin encontrar ventaja, y esta
+última sin poder concluir nada por falta de eventos suficientes, no por
+encontrar una pérdida.
+
+**Decisión pendiente de Alex:** ¿seguir con esta idea de noticias
+(agrandando el universo de acciones a cientos en vez de 40, para juntar
+más casos), probar otra idea nueva, o pausar?
