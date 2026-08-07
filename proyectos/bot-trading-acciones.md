@@ -349,6 +349,35 @@ líquidas, y ahora noticias reales) — 6 sin encontrar ventaja, y esta
 última sin poder concluir nada por falta de eventos suficientes, no por
 encontrar una pérdida.
 
-**Decisión pendiente de Alex:** ¿seguir con esta idea de noticias
-(agrandando el universo de acciones a cientos en vez de 40, para juntar
-más casos), probar otra idea nueva, o pausar?
+### (2026-08-07) Prueba 8: escalar el aprendizaje automático a miles de acciones
+
+Alex insistió en que había que analizar muchas más acciones — "si tanta
+gente gana en bolsa, tú debes poder encontrar el patrón" — y pidió no
+parar hasta lograrlo, y si la memoria de la computadora no alcanzaba,
+"borrar las analizadas" (procesar por partes).
+
+Se hizo en dos pasos:
+- **500 acciones:** el resultado mejoró mucho frente a las 40 de antes —
+  fue el momento más prometedor de toda la búsqueda (el modelo dejó de
+  "olvidar" tanto lo aprendido al pasar a datos nuevos).
+- **1,461 acciones (~90% de todo lo mínimamente líquido del mercado, casi
+  un año... no, 90 días de datos, procesados por lotes para no quedarse
+  sin memoria, siguiendo la idea de Alex):** **el resultado empeoró en
+  vez de mejorar.** El modelo lineal pasó de una relación positiva en
+  entrenamiento a una relación **negativa** en la prueba (se invirtió, no
+  solo se debilitó). El modelo de árboles volvió a sobreajustar fuerte.
+
+**Es la segunda vez en esta búsqueda que algo prometedor se cae al
+someterlo a más escrutinio** (la primera fue Opening Range Breakout).
+Este patrón — algo se ve bien, y desaparece o se invierte con más datos —
+es justamente la huella de la casualidad estadística, no de una ventaja
+real. Reporte técnico completo en `~/bot-trading-acciones/report_fase2.md`.
+
+**Con esto van 8 pruebas rigurosas en total**, incluyendo analizar casi
+todo el mercado líquido de EE.UU. con aprendizaje automático. En ningún
+caso apareció una ventaja que se sostuviera al confirmarla con más datos.
+
+**Decisión pendiente de Alex:** con esta evidencia — se buscó en reglas
+fijas, aprendizaje automático, noticias reales, y a la escala de casi
+todo el mercado líquido, y las dos veces que algo pareció funcionar no se
+sostuvo — ¿cómo seguimos?
