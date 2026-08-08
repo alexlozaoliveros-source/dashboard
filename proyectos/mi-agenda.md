@@ -3,7 +3,7 @@
 - **Tipo:** programación
 - **Estado:** 🟢 Activo
 - **Inicio:** 2026-08-04
-- **Última actualización:** 2026-08-07
+- **Última actualización:** 2026-08-08
 
 ## Cómo usarla (versión con sincronización real)
 
@@ -51,6 +51,17 @@ clase ya puesta la abre para editarla o eliminarla.
 excepción — todavía no sabe distinguir semanas de puente/vacaciones
 según el calendario de la universidad (se dejó pendiente, ver
 "Decisiones importantes").
+
+**Horario real de Alex ya cargado (2026-08-08):**
+- Martes 16–18: Filosofía del Derecho — D-111
+- Martes 18–20: Derecho Procesal Administrativo — D-104
+- Miércoles 18–20: Derecho Procesal Laboral — en línea (videoconferencia)
+- Jueves 18–20: Derecho Procesal Administrativo — D-104 (2ª sesión de la semana)
+- Viernes 16–18: PAP Investigación y Práctica Jurídica — SO-W-112
+
+Cada clase tiene un campo opcional `desde` (fecha) para que no aparezca
+en semanas anteriores al inicio del semestre — se dejó en blanco/`null`
+porque Alex no ha confirmado la fecha exacta de inicio (pendiente).
 
 ## Qué es
 
@@ -117,6 +128,12 @@ en otro ordenador. Existen dos versiones:
   muchos símbolos — se prefirió no arriesgar a leerla mal y equivocar el
   horario de Alex. Si esto se retoma, pedirle a Alex las fechas exactas
   en texto plano en vez de volver a interpretar la imagen.
+- (2026-08-08) — Se agregó un campo opcional `desde` (fecha) a cada
+  clase de `clases`: si tiene valor, esa clase deja de mostrarse en Mi
+  semana en las semanas anteriores a esa fecha (comparación simple de
+  fecha ISO, sin lógica de puentes/vacaciones intermedias). Es la pieza
+  que falta para resolver el punto de arriba, en cuanto Alex confirme la
+  fecha de inicio de clases del semestre de otoño.
 
 ## Lecciones aprendidas
 
