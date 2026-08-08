@@ -3,23 +3,54 @@
 - **Tipo:** programación
 - **Estado:** 🟢 Activo
 - **Inicio:** 2026-08-04
-- **Última actualización:** 2026-08-06
+- **Última actualización:** 2026-08-07
 
 ## Cómo usarla (versión con sincronización real)
 
 Link: **https://mi-agenda-ten.vercel.app**
 
 Alex la abre igual desde el celular o la computadora. La primera vez que
-la abre en cada aparato, pide un PIN — es siempre el mismo PIN, lo
-comparte Claude con Alex por chat (no va escrito en este archivo por
-seguridad). Una vez puesto, ese aparato lo recuerda solo. Lo que se anota
-en un aparato aparece en el otro sin hacer nada más — puede tardar
-algunos segundos en aparecer (ver "Lecciones aprendidas").
+la abre en cada aparato, sale una pantalla oscura con un teclado
+numérico (como desbloquear un iPhone) pidiendo el PIN de 6 dígitos — se
+manda solo al completar los 6 números, no hay que darle a nada más. Es
+siempre el mismo PIN en todos los aparatos (Claude se lo comparte a Alex
+por chat, no va escrito aquí por seguridad). Una vez puesto, ese aparato
+lo recuerda solo. Lo que se anota en un aparato aparece en el otro sin
+hacer nada más — puede tardar algunos segundos en aparecer (ver
+"Lecciones aprendidas").
 
 Al final de la página siguen los botones "Guardar copia" / "Cargar una
 copia guardada" como respaldo extra, ya no son necesarios para pasar
 datos entre aparatos (eso ahora es automático), pero sirven si algún día
 se quiere sacar una copia de todo.
+
+### Partidos de Chivas (automático)
+
+Cada día se agregan solos los próximos partidos de Chivas (Liga MX,
+fuente: API pública de ESPN, mismo proveedor que usa la quiniela) como
+compromisos normales, con el rival, si es local o visita, y el estadio
+en la nota. Hay un botón "⚽ Actualizar partidos de Chivas" para forzarlo
+al momento en vez de esperar al día siguiente. Si Chivas avanza de
+ronda (ej. pasa a semifinales), ese partido nuevo aparece solo la
+siguiente vez que se actualice (automático o con el botón) — apenas
+ESPN lo publique. Ahora mismo solo cubre Liga MX (no Leagues Cup ni
+amistosos).
+
+### Mi semana (horario de clases)
+
+Cuadro nuevo con una cuadrícula: los 7 días de la semana como columnas,
+bloques de 2 horas (8–10, 10–12 … 20–22) como filas. Se toca un espacio
+vacío para agregar algo — puede ser una **clase que se repite cada
+semana** (vive en una lista aparte, `clases`) o **algo de un solo día**
+(un compromiso normal, con esa fecha exacta — solo aparece esa semana,
+no se repite). Los compromisos normales de la semana en curso que caen
+dentro de un bloque de 2 horas también se ven ahí mismo. Tocar una
+clase ya puesta la abre para editarla o eliminarla.
+
+**Limitación conocida:** las clases se repiten *todas* las semanas sin
+excepción — todavía no sabe distinguir semanas de puente/vacaciones
+según el calendario de la universidad (se dejó pendiente, ver
+"Decisiones importantes").
 
 ## Qué es
 
@@ -67,6 +98,25 @@ en otro ordenador. Existen dos versiones:
 - (2026-08-06) — Los botones de exportar/importar de la v1 se dejaron
   también en esta versión, como respaldo extra, aunque ya no hacen falta
   para sincronizar entre aparatos.
+- (2026-08-07) — **PIN cambiado a `123456`**, con teclado numérico en
+  pantalla (como iPhone) en vez de un cuadro de texto — Alex lo pidió
+  así explícitamente. El PIN se sigue guardando como variable de entorno
+  `AGENDA_PIN` en Vercel.
+- (2026-08-07) — Partidos de Chivas: se agregan como compromisos
+  normales con `origen: "chivas"` (campo nuevo, opcional, no rompe los
+  compromisos viejos que no lo tienen). Esto permite que la
+  sincronización sepa cuáles borrar/actualizar sin tocar nada que Alex
+  haya escrito a mano. Si Alex borra un partido de Chivas a mano, puede
+  volver a aparecer la próxima sincronización mientras siga siendo un
+  partido futuro según ESPN — es el comportamiento esperado de "se
+  actualiza sola", no un bug.
+- (2026-08-07) — **Pendiente, no se construyó todavía:** que las clases
+  de "Mi semana" respeten el calendario oficial de la universidad
+  (ITESO) y no aparezcan en semanas de puente/vacaciones. Alex mandó el
+  calendario oficial (imagen), pero es una infografía compleja con
+  muchos símbolos — se prefirió no arriesgar a leerla mal y equivocar el
+  horario de Alex. Si esto se retoma, pedirle a Alex las fechas exactas
+  en texto plano en vez de volver a interpretar la imagen.
 
 ## Lecciones aprendidas
 
@@ -94,6 +144,14 @@ en otro ordenador. Existen dos versiones:
   esperando 3-4 segundos siempre mostraba lo correcto. Para el uso real
   de Alex (revisar el otro aparato en otro momento, no en el mismo
   segundo) esto no se nota.
+- (2026-08-07) — **El endpoint de ESPN "horario de un equipo"
+  (`/teams/{id}/schedule`) no traía los partidos futuros de Chivas**
+  (solo mostraba partidos ya jugados), aunque esos partidos sí existían.
+  Se encontró que el endpoint del **marcador de toda la liga**
+  (`/scoreboard?dates=RANGO`) sí los tenía, filtrando después por el id
+  del equipo. Mismo truco que puede servirle a la quiniela si algún día
+  hace falta el calendario de un equipo específico en vez de toda la
+  jornada.
 
 ## Notas sueltas
 
