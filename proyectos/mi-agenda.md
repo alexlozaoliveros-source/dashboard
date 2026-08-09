@@ -47,21 +47,24 @@ no se repite). Los compromisos normales de la semana en curso que caen
 dentro de un bloque de 2 horas también se ven ahí mismo. Tocar una
 clase ya puesta la abre para editarla o eliminarla.
 
-**Limitación conocida:** las clases se repiten *todas* las semanas sin
-excepción — todavía no sabe distinguir semanas de puente/vacaciones
-según el calendario de la universidad (se dejó pendiente, ver
-"Decisiones importantes").
+Cada clase soporta `desde`, `hasta` (fechas límite) y `excepciones`
+(lista de fechas puntuales a saltar, ej. un puente) — todos opcionales,
+sin UI propia para editar `excepciones` todavía (se carga a mano por
+Claude si hace falta; ver más abajo).
 
-**Horario real de Alex ya cargado (2026-08-08):**
+**Horario real de Alex, semestre de otoño 2026 (cargado 2026-08-08):**
 - Martes 16–18: Filosofía del Derecho — D-111
 - Martes 18–20: Derecho Procesal Administrativo — D-104
 - Miércoles 18–20: Derecho Procesal Laboral — en línea (videoconferencia)
 - Jueves 18–20: Derecho Procesal Administrativo — D-104 (2ª sesión de la semana)
 - Viernes 16–18: PAP Investigación y Práctica Jurídica — SO-W-112
 
-Cada clase tiene un campo opcional `desde` (fecha) para que no aparezca
-en semanas anteriores al inicio del semestre — se dejó en blanco/`null`
-porque Alex no ha confirmado la fecha exacta de inicio (pendiente).
+Vigencia: **desde el 17 de agosto de 2026 hasta el 7 de diciembre de
+2026** en las 5. Puentes que dio Alex: 16 de sep, 12 de oct, 16 de nov —
+de esos, solo el **16 de septiembre** cae en un día con clase
+(miércoles), así que solo la clase de Derecho Procesal Laboral tiene esa
+fecha en `excepciones`. Los otros dos puentes caen en lunes, que Alex no
+tiene ocupado, así que no requerían nada.
 
 ## Qué es
 
@@ -121,19 +124,20 @@ en otro ordenador. Existen dos versiones:
   volver a aparecer la próxima sincronización mientras siga siendo un
   partido futuro según ESPN — es el comportamiento esperado de "se
   actualiza sola", no un bug.
-- (2026-08-07) — **Pendiente, no se construyó todavía:** que las clases
-  de "Mi semana" respeten el calendario oficial de la universidad
-  (ITESO) y no aparezcan en semanas de puente/vacaciones. Alex mandó el
-  calendario oficial (imagen), pero es una infografía compleja con
-  muchos símbolos — se prefirió no arriesgar a leerla mal y equivocar el
-  horario de Alex. Si esto se retoma, pedirle a Alex las fechas exactas
-  en texto plano en vez de volver a interpretar la imagen.
-- (2026-08-08) — Se agregó un campo opcional `desde` (fecha) a cada
-  clase de `clases`: si tiene valor, esa clase deja de mostrarse en Mi
-  semana en las semanas anteriores a esa fecha (comparación simple de
-  fecha ISO, sin lógica de puentes/vacaciones intermedias). Es la pieza
-  que falta para resolver el punto de arriba, en cuanto Alex confirme la
-  fecha de inicio de clases del semestre de otoño.
+- (2026-08-07) — Alex mandó el calendario oficial de ITESO como imagen,
+  pero es una infografía compleja con muchos símbolos — se prefirió no
+  arriesgar a leerla mal y equivocar el horario de Alex. **Se le pidió a
+  Alex las fechas clave en texto plano en vez de interpretar la
+  imagen** (funcionó bien, ver siguiente entrada).
+- (2026-08-08) — **Resuelto: las clases ahora respetan el calendario del
+  semestre.** Se agregaron los campos `desde`, `hasta` (fechas límite,
+  comparación simple de fecha ISO) y `excepciones` (lista de fechas
+  puntuales a saltar) a cada clase de `clases`. Alex confirmó por chat:
+  clases del 17 de agosto al 7 de diciembre de 2026, puentes el 16 de
+  septiembre, 12 de octubre y 16 de noviembre. Antes de aplicarlos se
+  calculó qué día de la semana caía cada puente — solo el 16 de
+  septiembre (miércoles) coincidía con un día que Alex tiene clase, así
+  que fue el único que se agregó a `excepciones`.
 
 ## Lecciones aprendidas
 
