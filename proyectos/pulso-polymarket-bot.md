@@ -143,12 +143,44 @@ reales, no con promesas.
     siguen siendo valiosos por si más adelante cambian las condiciones del
     mercado y vale la pena repetir el análisis.
 
+- (2026-08-11) — **Se cerró la versión propia (Mac) y se reemplazó por la
+  versión de un amigo, corriendo en un servidor real.** Con el resultado
+  negativo de la Fase 1 confirmado, Alex decidió no seguir con su propia
+  copia y usar en su lugar el paquete `pulso-amigo` que le compartió un
+  amigo suyo (que construyó un bot parecido de forma independiente — ver
+  la "advertencia entre amigos" en el propio `EMPIEZA_AQUI.md` del
+  paquete, sobre no pisarse si ambos terminan operando el mismo nicho).
+  - Se apagó y se quitó el servicio (`launchd`) del colector viejo en la
+    Mac. Sus datos y reportes (`report_f0.md`, `report_f1.md`) se dejaron
+    intactos en `~/pulso` por si se quieren consultar después.
+  - Se montó un servidor nuevo en Hetzner (Helsinki, CX23, ~$6.49/mes) con
+    llave SSH propia (`~/.ssh/pulso_amigo`), siguiendo al pie de la letra
+    la guía `EMPIEZA_AQUI.md` del paquete (esa guía advierte que una
+    laptop de casa no sirve para esto: se duerme, compite por CPU, el
+    internet de casa falla de noche).
+  - Blindaje aplicado: solo entra por llave SSH (contraseña y root por
+    contraseña desactivados), firewall (`ufw`) solo con SSH abierto,
+    `fail2ban`, actualizaciones de seguridad automáticas, usuario sin
+    privilegios (`pulso`) para el día a día.
+  - Colector corriendo como servicio `systemd` (`pulso-collector`,
+    reinicio automático si se cae), con los 5 flujos de datos conectados
+    (Bitcoin, Ethereum, oráculo x2, Binance) confirmados en `status.json`.
+  - Alertas al celular de Alex vía `ntfy.sh` (tema privado
+    `pulso-amigo-alex-7f69ed98957c`), revisando cada 5 min por cron:
+    servicio caído, heartbeat congelado, algún stream mudo >5 min, o disco
+    <10% libre — máximo 1 aviso por hora por tipo de problema. Probado y
+    confirmado que le llega a su teléfono.
+  - **Reloj limpio del gate F0 reiniciado desde ~2026-08-11 04:14 UTC** en
+    el servidor nuevo (es una base de código y una máquina distintas a las
+    del intento anterior, así que no tendría sentido heredar el conteo).
+
 ## Notas sueltas
 
 - El detalle técnico completo (cómo se conecta a cada fuente de datos, qué
   archivos genera, qué debe cumplir cada fase para aprobarse) vive en
-  `~/pulso/CLAUDE.md`, dentro de la carpeta propia del proyecto.
-- Decisión pendiente de Alex: con el resultado negativo de la Fase 1
-  (arriba), ¿se cierra el proyecto aquí, se investiga algo puntual antes
-  de cerrarlo, o se deja el colector corriendo por si el mercado cambia
-  más adelante?
+  `CLAUDE.md` dentro del paquete `pulso-amigo` (copiado al servidor en
+  `/home/pulso/pulso/CLAUDE.md`). La copia vieja en `~/pulso/CLAUDE.md` (Mac)
+  ya no es la que está activa.
+- El paquete original que dio origen a esta versión sigue en
+  `~/Downloads/pulso-amigo` (y sus .zip hermanos) por si hace falta
+  reconsultarlo.
