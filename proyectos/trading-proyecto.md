@@ -12,6 +12,8 @@ trader desde cero" (documento Word que Alex compartió, plan de 3 años:
 año 1 inglés, año 2 bases de economía y finanzas, año 3 especialización
 en mercados; después cursos de traders y primer dinero real).
 
+Link (página de Claude, privada hasta que Alex la comparta): **https://claude.ai/artifact/FU7qGJYBYtAqzPjJAjdn62**. Todavía no está en Vercel (falta la llave de Vercel de Alex).
+
 La página vive en `proyectos/trading-proyecto/index.html` (un solo
 archivo, se puede abrir con doble clic) y se publica en Vercel.
 
