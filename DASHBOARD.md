@@ -10,5 +10,6 @@ Vista general de todos los proyectos. El detalle de cada uno está en
 | [Pulso — bot Polymarket](proyectos/pulso-polymarket-bot.md) | Programación | 🟢 Activo | 2026-08-11 | Versión propia cerrada (Fase 1 sin edge real). Reemplazada por la versión de un amigo (`pulso-amigo`), corriendo ahora en un servidor propio en Hetzner con alertas al celular. De vuelta en Fase 0. |
 | [Mi agenda](proyectos/mi-agenda.md) | Programación | 🟢 Activo | 2026-08-07 | Agenda personal con link real — https://mi-agenda-ten.vercel.app — se sincroniza sola, teclado de PIN, agrega partidos de Chivas solos, y horario de clases semanal editable. |
 | [Bot de trading de acciones](proyectos/bot-trading-acciones.md) | Programación | 🟢 Activo | 2026-08-07 | 8 pruebas rigurosas, incluyendo ML sobre ~1,461 acciones (~90% del mercado líquido de EE.UU.) — sin ventaja real que se sostenga; decisión pendiente de Alex. |
+| [Materia "Fe y ateísmo"](proyectos/materia-fe-y-ateismo.md) | Escuela | 🟢 Activo | 2026-11-17 | Reportes de lecturas para la materia de Derecho "Fe y ateísmo", con formato fijo de 5 secciones. |
 
 **Estados posibles:** 🟢 Activo · 🟡 Pausado · ⚪ Terminado
