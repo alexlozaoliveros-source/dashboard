@@ -104,6 +104,9 @@ h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(34px,6vw,54px);line-he
 .item .when{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--gold);margin-bottom:6px}
 .item b{display:block;font-size:16px;margin-bottom:6px;line-height:1.35}
 .item p{font-size:14px;color:#b0bac6}
+.item p b,.item p i{display:inline;font-size:inherit;margin:0}
+.items.two{grid-template-columns:repeat(2,1fr)}
+@media (max-width:700px){.items.two{grid-template-columns:1fr}}
 .item .cost{margin-top:10px;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--green)}
 .panel ul{padding-left:20px;color:#c3ccd7}
 .panel ul li{margin:6px 0}
@@ -115,6 +118,21 @@ h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(34px,6vw,54px);line-he
 .trip p{font-size:14.5px;color:#c3ccd7;margin-top:6px}
 .close-btn{all:unset;cursor:pointer;float:right;color:var(--muted);font-size:14px;border:1px solid var(--line);padding:6px 12px;border-radius:8px}
 .close-btn:hover{color:var(--text);border-color:var(--muted)}
+
+.sched{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.sched .row{display:flex;gap:16px;align-items:baseline;padding:11px 16px;border-top:1px solid var(--line);background:var(--card)}
+.sched .row:first-child{border-top:0}
+.sched .row span{flex:none;width:110px;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted)}
+.sched .row p{font-size:14.5px;color:#d3dae3}
+.sched .row.en{box-shadow:inset 3px 0 0 var(--green)}
+.sched .row.su{box-shadow:inset 3px 0 0 var(--blue)}
+.sched .row.rv{box-shadow:inset 3px 0 0 var(--gold)}
+.sched .row.br p{color:var(--muted)}
+.cost-t .row{justify-content:space-between}
+.cost-t .row span{width:auto;text-align:right;color:var(--green)}
+.hbar{display:flex;height:34px;border-radius:8px;overflow:hidden;gap:2px}
+.hbar div{display:flex;align-items:center;padding:0 10px;font-size:13px;font-weight:600;color:#06140b;white-space:nowrap;overflow:hidden}
+@media (max-width:600px){.sched .row{flex-direction:column;gap:2px}.cost-t .row span{text-align:left}}
 
 footer{margin-top:100px;border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted);font-size:13.5px;text-align:center}
 
@@ -192,7 +210,7 @@ footer{margin-top:100px;border-top:1px solid var(--line);padding:30px 0 50px;col
   <div class="plist">
     <div class="pitem"><div class="ic"></div><div><b>Primero el idioma.</b><p>Casi todo el material serio de finanzas (libros, cursos, reportes, el CFA, cursos en el extranjero) está en inglés. Sin un nivel B2–C1 el resto del plan se vuelve más lento y más caro.</p></div></div>
     <div class="pitem"><div class="ic"></div><div><b>Primero entender, después operar.</b><p>No se toca dinero real en bolsa hasta terminar las bases. Antes de eso solo hay simuladores y cuentas demo, para practicar sin arriesgar.</p></div></div>
-    <div class="pitem"><div class="ic"></div><div><b>Medio tiempo constante.</b><p>El inglés ocupa el tiempo principal del año 1, y en paralelo van uno o dos cursos de bases. La meta es avanzar sin saturarse.</p></div></div>
+    <div class="pitem"><div class="ic"></div><div><b>Tiempo completo en el año 1.</b><p>Unas 43 horas por semana: 28 de inglés con dos profesores particulares y el resto para la materia del trimestre (bolsa, IA o Excel). El domingo se descansa, para avanzar sin agotarse.</p></div></div>
     <div class="pitem"><div class="ic"></div><div><b>Cada etapa tiene una meta medible.</b><p>Por ejemplo: un examen de inglés aprobado, un diploma, una certificación. Si no se cumple la meta, no se pasa a la siguiente etapa.</p></div></div>
     <div class="pitem"><div class="ic"></div><div><b>Los cursos de traders van al final.</b><p>Con las bases, se puede evaluar críticamente a Cardona y a otros instructores, en vez de creerles todo.</p></div></div>
     <div class="pitem"><div class="ic"></div><div><b>Un viaje de estudio por año.</b><p>Cada año tiene un viaje ligado a lo que se está aprendiendo, y un segundo viaje corto opcional.</p></div></div>
@@ -211,7 +229,7 @@ footer{margin-top:100px;border-top:1px solid var(--line);padding:30px 0 50px;col
       <div class="yr">MESES 1–12</div>
       <div class="yn">Año <span>1</span></div>
       <div class="yt">Inglés como prioridad</div>
-      <div class="ym">Llegar a B2 y certificarlo. En paralelo: qué es la bolsa, IA y Excel.</div>
+      <div class="ym">Tiempo completo, 43 h por semana: dos profesores particulares para llegar a B2. En paralelo: bolsa, IA y Excel.</div>
       <div class="open">Ver el año <i>▾</i></div>
     </button>
     <button class="ycard" data-y="2" aria-expanded="false" aria-controls="panel">
@@ -240,34 +258,80 @@ footer{margin-top:100px;border-top:1px solid var(--line);padding:30px 0 50px;col
 <!-- Contenido de cada año -->
 <template id="y1">
   <button class="close-btn" data-close>Cerrar ✕</button>
-  <div class="yr mono" style="color:var(--muted);font-size:13px">AÑO 1 · MESES 1–12</div>
+  <div class="yr mono" style="color:var(--muted);font-size:13px">AÑO 1 · MESES 1–12 · TIEMPO COMPLETO</div>
   <h3>Inglés como prioridad</h3>
-  <div class="goal"><b>Meta del año:</b> llegar a un nivel <b>B2</b> de inglés y demostrarlo con un examen oficial. En paralelo, a medio tiempo: qué es la bolsa, inteligencia artificial y Excel, todavía sin invertir.</div>
+  <div class="goal"><b>Meta del año:</b> llegar a un nivel <b>B2</b> de inglés (idealmente C1) y certificarlo. En paralelo, aprender qué es la bolsa y manejar IA y Excel, todavía sin invertir. Son unas <b>43 horas por semana</b>: de lunes a viernes de 8:00 a 18:00 y el sábado por la mañana.</div>
 
-  <h4>Inglés <span class="tag">tiempo principal: 8–10 horas por semana</span></h4>
+  <h4>Los dos profesores particulares <span class="tag">3 horas diarias</span></h4>
   <div class="items">
-    <div class="item"><b><a href="https://www.proulex.com" target="_blank" rel="noopener">Proulex</a> (Universidad de Guadalajara)</b><p>Presencial en GDL, cursos intensivos y sabatinos. Ofrece cursos de preparación para el TOEFL y para los exámenes de Cambridge.</p><div class="cost">Consultar por nivel</div></div>
-    <div class="item"><b>Escuelas privadas en GDL</b><p>Harmon Hall, Berlitz, Instituto Mexicano Norteamericano, International House. Presencial. En Berlitz, un nivel grupal toma 6–8 semanas.</p><div class="cost">$2,600–3,100 MXN al mes (ref. CDMX)</div></div>
-    <div class="item"><b>Tutor en línea 1 a 1 (Preply, italki)</b><p>Buen complemento para practicar conversación.</p><div class="cost">$200–800 MXN la hora</div></div>
-    <div class="item"><b>Inmersión en el extranjero</b><p>4–6 semanas de inglés intensivo en Nueva York (ver el viaje del año).</p><div class="cost">Desde USD 470 por semana</div></div>
+    <div class="item"><div class="when">PROFESOR A · 8:00–9:30, LUNES A VIERNES</div><b>Gramática, escritura, lectura y preparación del examen</b><p><b>Perfil:</b> certificado para enseñar inglés (CELTA, TESOL o similar), con experiencia preparando el TOEFL o el Cambridge.</p><p style="margin-top:6px"><b>Modalidad:</b> presencial en Guadalajara o en línea.</p><div class="cost">$200–400 MXN la hora (hispanohablante certificado)</div></div>
+    <div class="item"><div class="when">PROFESOR B · 10:00–11:30, LUNES A VIERNES</div><b>Conversación, pronunciación, comprensión auditiva, inglés de negocios y finanzas</b><p><b>Perfil:</b> hablante nativo, de preferencia con experiencia en negocios.</p><p style="margin-top:6px"><b>Modalidad:</b> en línea (Preply, italki) o presencial.</p><div class="cost">$400–800 MXN la hora (nativo)</div></div>
+  </div>
+  <p class="note"><b>Cómo elegirlos:</b> toma una clase de prueba con 3 o 4 candidatos para cada puesto. Con 15 horas de clase por semana, el costo va de unos <b>$13,000 a $52,000 MXN al mes</b> (<a href="https://cuantomecuesta.com/mx/curso-ingles/" target="_blank" rel="noopener">referencia de precios</a>).</p>
+
+  <h4>Horario semanal <span class="tag">lunes a viernes</span></h4>
+  <div class="sched">
+    <div class="row en"><span>8:00–9:30</span><p>Clase con el Profesor A</p></div>
+    <div class="row br"><span>9:30–10:00</span><p>Descanso</p></div>
+    <div class="row en"><span>10:00–11:30</span><p>Clase con el Profesor B</p></div>
+    <div class="row en"><span>11:30–12:30</span><p>Estudio por tu cuenta: tarea de los profesores y vocabulario con tarjetas (Anki)</p></div>
+    <div class="row br"><span>12:30–13:30</span><p>Comida</p></div>
+    <div class="row su"><span>13:30–16:00</span><p>Materia del trimestre: bolsa, IA o Excel</p></div>
+    <div class="row br"><span>16:00–16:30</span><p>Descanso o ejercicio</p></div>
+    <div class="row en"><span>16:30–17:30</span><p>Lectura de finanzas en inglés (The Wall Street Journal, Financial Times o The Economist)</p></div>
+    <div class="row rv"><span>17:30–18:00</span><p>Repaso del día y dudas anotadas para los profesores</p></div>
+  </div>
+  <div class="items" style="margin-top:12px">
+    <div class="item"><div class="when">SÁBADO · 9:00–12:00</div><p>Un sábado sí y otro no, <b>simulacro cronometrado del examen</b>. Los demás sábados, club de conversación o una película en inglés sin subtítulos, que luego comentas con el Profesor B.</p></div>
+    <div class="item"><div class="when">DOMINGO</div><p><b>Libre.</b></p></div>
   </div>
 
-  <h4>Examen al final del año <span class="tag">elige uno</span></h4>
-  <div class="items">
-    <div class="item"><b>TOEFL iBT</b><p>En Zapopan se presenta en la <a href="https://contenidos.uag.mx/pdfs/manual-toefl_2026.pdf" target="_blank" rel="noopener">UAG</a>, centro certificador oficial. Es el más aceptado por universidades de EE. UU.</p><div class="cost">USD 250</div></div>
-    <div class="item"><b>Cambridge B2 First</b><p>Muy reconocido en Europa (Suiza, Reino Unido).</p><div class="cost">Cerca de $3,200 MXN</div></div>
+  <h4>Cómo se reparten las 43 horas</h4>
+  <div class="hbar" role="img" aria-label="28 horas de inglés, 12.5 de materia del trimestre y 2.5 de repaso">
+    <div style="flex:28;background:var(--green)">Inglés · 28 h</div>
+    <div style="flex:12.5;background:var(--blue)">Materia · 12.5 h</div>
+    <div style="flex:2.5;background:var(--gold)"></div>
   </div>
-  <p class="note"><b>Por qué B2:</b> es el nivel que piden los cursos en el extranjero de este plan. La <a href="https://www.summerschools.uzh.ch/en/courses-on-offer/finance-for-the-future.html" target="_blank" rel="noopener">Universidad de Zúrich</a>, por ejemplo, pide aproximadamente B2.</p>
+  <ul style="margin-top:12px">
+    <li><b>Inglés, 28 horas:</b> 15 de clase, 5 de estudio por tu cuenta, 5 de lectura y 3 del sábado.</li>
+    <li><b>Materia del trimestre:</b> 12.5 horas.</li>
+    <li><b>Repaso diario:</b> 2.5 horas.</li>
+  </ul>
 
-  <h4>Medio tiempo <span class="tag">2–3 horas por semana</span></h4>
-  <div class="items">
-    <div class="item"><div class="when">MESES 3–6</div><b>Qué es la bolsa</b><p>Curso presencial <a href="https://expansion.mx/finanzas-personales/2022/02/23/4-cursos-que-puedes-tomar-para-aprender-a-invertir" target="_blank" rel="noopener">Introducción al mercado de valores, Escuela Bolsa Mexicana</a> (18 horas), más la ruta "Aprende a invertir" de la <a href="https://dplnews.com/bolsa-mexicana-valores-lanza-nueva-escuela-digital/" target="_blank" rel="noopener">Escuela Digital de la BMV</a> (12 horas, en línea).</p><div class="cost">$5,916 MXN (precio 2022)</div></div>
-    <div class="item"><div class="when">MESES 6–8</div><b>Inteligencia artificial</b><p><a href="https://diplomados.iteso.mx/documents/d/diplomados/iteso_inteligencia_artificial_generativa_b" target="_blank" rel="noopener">IA Generativa del ITESO</a>, en línea, 40 horas en 6 semanas. Enseña a escribir instrucciones (prompts) y a usar la IA para texto, imágenes, audio y video. Desde ahí sirve para resumir reportes, practicar inglés y estudiar más rápido.</p><div class="cost">Consultar con el ITESO</div></div>
-    <div class="item"><div class="when">MESES 9–12</div><b>Excel</b><p><a href="https://www.wallstreetprep.com/self-study-programs/excel-crash-course" target="_blank" rel="noopener">Excel Crash Course de Wall Street Prep</a>: 91 lecciones (8 h 39 min), en inglés. Lo usan bancos de inversión para entrenar a sus analistas. Todo el análisis de los años 2 y 3 se hace en hojas de cálculo.</p><div class="cost">Consultar en su sitio</div></div>
+  <h4>Plan por trimestre</h4>
+  <div class="items two">
+    <div class="item"><div class="when">MESES 1–3</div><b>Base de inglés + qué es la bolsa</b><p><b>Inglés:</b> examen de ubicación el primer día con el Profesor A. La meta es subir un nivel (por ejemplo, de A2 a B1).</p><p style="margin-top:6px"><b>Tardes:</b> el curso <a href="https://expansion.mx/finanzas-personales/2022/02/23/4-cursos-que-puedes-tomar-para-aprender-a-invertir" target="_blank" rel="noopener">Introducción al mercado de valores de la BMV</a> (18 horas); la ruta "Aprende a invertir" de la <a href="https://dplnews.com/bolsa-mexicana-valores-lanza-nueva-escuela-digital/" target="_blank" rel="noopener">Escuela Digital de la BMV</a> (12 horas, 100% en línea); y el resto del tiempo, lectura guiada de un libro para principiantes, como <i>Un paseo aleatorio por Wall Street</i>, de Burton Malkiel.</p><div class="cost">$5,916 MXN (precio 2022, confirmar)</div></div>
+    <div class="item"><div class="when">MESES 4–6</div><b>Inglés intermedio + IA y Excel</b><p><b>Inglés:</b> consolidar B1 y empezar con los materiales del examen.</p><p style="margin-top:6px"><b>Tardes:</b> el curso de <a href="https://diplomados.iteso.mx/documents/d/diplomados/iteso_inteligencia_artificial_generativa_b" target="_blank" rel="noopener">IA Generativa del ITESO</a> (40 horas en 6 semanas, en línea: 18 de webinar, 12 en plataforma y 10 de tutorías para un proyecto). Después, el <a href="https://www.wallstreetprep.com/self-study-programs/excel-crash-course" target="_blank" rel="noopener">Excel Crash Course de Wall Street Prep</a> (91 lecciones, 8 h 39 min de video), más ejercicios propios.</p><div class="cost">Consultar precio vigente</div></div>
+    <div class="item"><div class="when">MESES 7–8</div><b>Inmersión en Nueva York (6 semanas)</b><p>Curso intensivo en <a href="https://www.kaplaninternational.com/united-states/new-york" target="_blank" rel="noopener">Kaplan Nueva York</a>: 35 lecciones por semana, incluidas 8 de habilidades de negocios. Los dos profesores bajan a <b>una clase semanal en línea</b> cada uno, para no perder el hilo. No hay materia de tarde: las tardes son para vivir la ciudad en inglés.</p><div class="cost">Ver el viaje abajo</div></div>
+    <div class="item"><div class="when">MESES 9–12</div><b>B2 y examen</b><p><b>Inglés:</b> el Profesor A se enfoca 100% en el examen y el Profesor B en la fluidez. Examen oficial en el <b>mes 11</b>, con margen para repetirlo en el mes 12.</p><p style="margin-top:6px"><b>Tardes:</b> Excel aplicado a finanzas (precios, rendimientos, gráficas) y repaso en inglés de lo visto sobre bolsa e IA.</p></div>
   </div>
 
   <h4>Viaje de estudio <span class="tag">meses 7–8</span></h4>
-  <div class="trip"><b>✈ Inglés intensivo en Nueva York</b><p>En <a href="https://www.kaplaninternational.com/united-states/new-york" target="_blank" rel="noopener">Kaplan International</a>, a minutos de Central Park. El curso intensivo incluye inglés de negocios. 4–6 semanas: USD 470 por semana (1–4 semanas) o 440 (5–11 semanas), más USD 120 por semana para la versión intensiva; alojamiento aparte.</p><p><b>Opcional:</b> 1–2 semanas más en otra escuela de la misma red (ej. Boston), para repasar antes del examen B2.</p><p>Estados Unidos exige visa a los mexicanos: conviene tramitarla al inicio del año 1.</p></div>
+  <div class="trip"><b>✈ Inglés intensivo en Nueva York</b><p>En <a href="https://www.kaplaninternational.com/united-states/new-york" target="_blank" rel="noopener">Kaplan International</a>, a minutos de Central Park. El General English cuesta USD 470 por semana (1–4 semanas) o 440 (5–11 semanas), y la mejora a intensivo suma USD 120 por semana (<a href="https://www.kaplaninternational.com/pricelist/row" target="_blank" rel="noopener">lista de precios</a>). El alojamiento va aparte.</p><p><b>Opcional:</b> 1 o 2 semanas más en otra escuela de Kaplan.</p><p>Estados Unidos exige visa a los mexicanos: conviene tramitarla al inicio del año 1.</p></div>
+
+  <h4>Seguimiento</h4>
+  <div class="items two">
+    <div class="item"><div class="when">DÍA 1</div><p>Examen de ubicación para fijar el punto de partida.</p></div>
+    <div class="item"><div class="when">CADA MES</div><p>Reunión de 30 minutos con los dos profesores para revisar el avance y ajustar.</p></div>
+    <div class="item"><div class="when">CADA DOS SEMANAS</div><p>Simulacro del examen, los sábados.</p></div>
+    <div class="item"><div class="when">MES 11</div><p><b>Examen oficial.</b> Una opción es el TOEFL iBT: la <a href="https://contenidos.uag.mx/pdfs/manual-toefl_2026.pdf" target="_blank" rel="noopener">UAG</a> es centro certificador oficial y lo cobra en USD 250. La otra es el Cambridge B2 First (cerca de $3,200 MXN). Si los simulacros ya dan B2 antes, adelantas el examen y subes la meta a C1.</p></div>
+  </div>
+
+  <h4>Reglas del año</h4>
+  <ul>
+    <li><b>No se opera en bolsa; solo se aprende.</b></li>
+    <li>Si la meta de inglés de un trimestre se atrasa, la materia de la tarde le cede horas al inglés.</li>
+    <li>El domingo se descansa: estudiar 43 horas a la semana durante un año sin descanso termina en agotamiento.</li>
+  </ul>
+
+  <h4>Costo aproximado del año 1</h4>
+  <div class="sched cost-t">
+    <div class="row"><p>Dos profesores particulares (10 meses)</p><span>$130,000–520,000 MXN</span></div>
+    <div class="row"><p>Viaje a Nueva York, 6 semanas de clases</p><span>≈ USD 3,360 + alojamiento y vuelo</span></div>
+    <div class="row"><p>Curso de la Escuela Bolsa Mexicana</p><span>≈ $5,916 MXN (2022)</span></div>
+    <div class="row"><p>IA Generativa (ITESO) y Excel Crash Course</p><span>Consultar precio vigente</span></div>
+    <div class="row"><p>Examen TOEFL iBT</p><span>USD 250</span></div>
+  </div>
 
   <div class="rule"><span>⚠</span> Regla del año 1: no se opera en bolsa; solo se aprende.</div>
 </template>
