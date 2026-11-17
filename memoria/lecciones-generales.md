@@ -45,3 +45,13 @@ aplican a varios. Se actualiza automáticamente durante las conversaciones.
   `Cache-Control: no-store` en la respuesta — si no, a veces Vercel sirve
   una copia vieja guardada en su red en vez de ejecutar la función de
   nuevo. Aplica a cualquier proyecto en Vercel, no solo a Mi agenda.
+- (2026-11-17) — **Herramienta "watch" para que Claude "vea" videos**
+  (github.com/bradautomates/claude-video, revisada y segura). Desde la
+  nube, YouTube bloquea la descarga normal ("Too Many Requests" / "no
+  eres un bot"). Lo que sí funcionó: pedirle a YouTube los datos como si
+  fuera un video "incrustado" en otra página (opción técnica de yt-dlp:
+  `--js-runtimes node --extractor-args "youtube:player_client=web_embedded"`)
+  y bajar solo los subtítulos automáticos en español (`es-orig`). Así se
+  puede leer todo lo que se dice en un video de casi 1 hora en segundos.
+  Si el video no tiene subtítulos, haría falta una clave de un servicio de
+  transcripción (o de Gemini) — preguntarle a Alex antes.
