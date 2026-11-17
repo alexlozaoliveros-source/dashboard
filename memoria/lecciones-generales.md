@@ -45,3 +45,16 @@ aplican a varios. Se actualiza automáticamente durante las conversaciones.
   `Cache-Control: no-store` en la respuesta — si no, a veces Vercel sirve
   una copia vieja guardada en su red en vez de ejecutar la función de
   nuevo. Aplica a cualquier proyecto en Vercel, no solo a Mi agenda.
+- (2026-11-17) — Se instaló el skill **`watch`** (de
+  github.com/bradautomates/claude-video, código abierto, revisado antes de
+  instalar). Sirve para que Claude "vea" un video (link de YouTube, etc., o
+  un archivo): saca imágenes con su minuto/segundo y la transcripción, y con
+  eso responde preguntas o resume. Quedó guardado **dentro de este
+  repositorio** (`.claude/skills/watch/`), no en la computadora, porque las
+  conversaciones de Alex corren en la nube y lo que se instala "afuera" se
+  borra al cerrar la sesión. Para usarlo: pedir "usa el skill watch con
+  este video: <link>". Necesita el programa `yt-dlp`; en cada sesión nueva
+  puede que haya que reinstalarlo (Claude lo hace solo, tarda segundos).
+  Opcional: con una clave gratis de Google Gemini ve también el audio
+  completo; sin clave funciona igual pero usando subtítulos del video.
+  Algunos sitios pueden bloquear descargas desde la nube.
