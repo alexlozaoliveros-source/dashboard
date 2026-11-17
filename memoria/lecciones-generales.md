@@ -45,3 +45,9 @@ aplican a varios. Se actualiza automáticamente durante las conversaciones.
   `Cache-Control: no-store` en la respuesta — si no, a veces Vercel sirve
   una copia vieja guardada en su red en vez de ejecutar la función de
   nuevo. Aplica a cualquier proyecto en Vercel, no solo a Mi agenda.
+- (2026-11-17) — **Subir páginas a Vercel sin la Mac de Alex:** se puede
+  desde una sesión de Claude en la nube si Alex guarda una llave de Vercel
+  (vercel.com/account/tokens, Scope "Full Account") en el formulario
+  seguro de Claude. La llave correcta empieza con `vcp_`. Ya quedó
+  guardada en el entorno "dashboard", así que en próximas sesiones de este
+  entorno probablemente ya no haga falta pedirla. Ver [[trading-proyecto]].

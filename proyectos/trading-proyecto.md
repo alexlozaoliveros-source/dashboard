@@ -12,7 +12,7 @@ trader desde cero" (documento Word que Alex compartió, plan de 3 años:
 año 1 inglés, año 2 bases de economía y finanzas, año 3 especialización
 en mercados; después cursos de traders y primer dinero real).
 
-Link (página de Claude, privada hasta que Alex la comparta): **https://claude.ai/artifact/FU7qGJYBYtAqzPjJAjdn62**. Todavía no está en Vercel (falta la llave de Vercel de Alex).
+Link público (Vercel): **https://trading-proyecto.vercel.app** — proyecto `trading-proyecto` en la cuenta de Vercel de Alex (`alexlozaoliveros-3295`). También existe una copia privada en Claude: https://claude.ai/artifact/FU7qGJYBYtAqzPjJAjdn62
 
 La página vive en `proyectos/trading-proyecto/index.html` (un solo
 archivo, se puede abrir con doble clic) y se publica en Vercel.
@@ -38,7 +38,12 @@ Orden de la página (lo pidió Alex así):
 
 ## Lecciones aprendidas
 
-- (ninguna todavía)
+- (2026-11-17) — Publicar en Vercel desde una sesión en la nube: Alex
+  crea una llave en vercel.com/account/tokens (Scope: Full Account) y la
+  pega en el formulario seguro de Claude. **El código correcto empieza con
+  `vcp_`**; la primera vez se guardó algo que no era la llave y Vercel
+  respondía "falta la llave" (incluso al intentar subir sin cuenta). Con la
+  llave correcta funcionó al instante.
 
 ## Notas sueltas
 
