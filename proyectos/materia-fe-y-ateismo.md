@@ -38,6 +38,8 @@ Si la lectura se conecta con otras del semestre, decirlo.
   sin Dios, Beauvoir ("La ceremonia del adiós"), tolerancia salvo con el
   intolerante.
 
+- Tarea hecha: [tarea-01-video-ateismo.md](materia-fe-y-ateismo/tarea-01-video-ateismo.md). Fecha de subida del video sin confirmar (se puso 2020 en APA porque el programa menciona fechas de septiembre de 2020).
+
 ## Notas sueltas
 
 - Si Alex dice "te adjunto la lectura", revisar que el archivo sí haya
