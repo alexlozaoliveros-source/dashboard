@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trading Proyecto</title>
+<meta name="description" content="Plan de 3 años para convertirse en trader desde cero.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e14; --bg2:#0f141c; --card:#131a24; --card2:#18212d; --line:#233042;
+  --text:#e8edf3; --muted:#8d9aab; --green:#22c55e; --green-soft:rgba(34,197,94,.12);
+  --red:#ef4444; --gold:#f5b942; --blue:#60a5fa;
+  --radius:16px; --max:1100px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.mono{font-family:"JetBrains Mono",monospace}
+
+/* ticker */
+.ticker{border-bottom:1px solid var(--line);background:var(--bg2);overflow:hidden;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-size:13px}
+.ticker-track{display:inline-block;padding:9px 0;animation:tick 40s linear infinite}
+.ticker span{margin-right:36px;color:var(--muted)}
+.ticker b{color:var(--text);font-weight:500;margin-right:6px}
+.up{color:var(--green)!important}.down{color:var(--red)!important}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* hero */
+.hero{padding:72px 20px 36px;text-align:center}
+.eyebrow{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);background:var(--green-soft);border:1px solid rgba(34,197,94,.3);padding:6px 14px;border-radius:999px;margin-bottom:22px}
+h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:clamp(64px,13vw,140px);line-height:.92;letter-spacing:-.04em;text-transform:uppercase}
+h1 .g{background:linear-gradient(90deg,var(--green),#86efac);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);max-width:620px;margin:24px auto 0;font-size:18px}
+
+/* chart */
+.chart-box{margin:40px auto 0;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:22px;padding:18px 18px 10px;box-shadow:0 30px 80px -30px rgba(34,197,94,.25)}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;padding:4px 6px 12px;font-family:"JetBrains Mono",monospace}
+.chart-head .sym{font-size:15px;color:var(--text)}
+.chart-head .px{font-size:22px;color:var(--green)}
+.chart-head .tf{font-size:12px;color:var(--muted)}
+#chart{width:100%;height:auto;display:block}
+.candle{opacity:0;animation:pop .35s ease forwards}
+@keyframes pop{from{opacity:0;transform:scaleY(.2)}to{opacity:1;transform:scaleY(1)}}
+.ma{stroke-dasharray:4000;stroke-dashoffset:4000;animation:draw 3s ease 1.2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* sections */
+section{padding:84px 0 0}
+.sec-label{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+h2{font-family:"Space Grotesk",sans-serif;font-size:clamp(34px,6vw,54px);line-height:1.05;letter-spacing:-.03em;margin-bottom:28px}
+
+/* vision */
+.vision-lead{background:linear-gradient(135deg,rgba(239,68,68,.14),rgba(239,68,68,.03));border:1px solid rgba(239,68,68,.35);border-radius:var(--radius);padding:30px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-bottom:18px}
+.big-stat{font-family:"Space Grotesk",sans-serif;font-size:clamp(60px,10vw,96px);font-weight:700;color:var(--red);line-height:1;letter-spacing:-.04em}
+.big-stat small{display:block;font-size:13px;font-family:"JetBrains Mono",monospace;color:var(--muted);letter-spacing:.05em;font-weight:500;margin-top:8px;text-transform:uppercase}
+.vision-lead h3{font-family:"Space Grotesk",sans-serif;font-size:24px;margin-bottom:8px;line-height:1.25}
+.vision-lead p{color:#c9d2dd}
+.vgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.vcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative;transition:border-color .2s,transform .2s}
+.vcard:hover{border-color:rgba(34,197,94,.5);transform:translateY(-2px)}
+.vnum{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--green);background:var(--green-soft);width:34px;height:34px;border-radius:10px;display:grid;place-items:center;margin-bottom:14px}
+.vcard h3{font-family:"Space Grotesk",sans-serif;font-size:21px;margin-bottom:8px;line-height:1.25}
+.vcard p{color:#b9c3cf;font-size:15.5px}
+
+/* principles */
+.plist{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.pitem{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.pitem .ic{flex:none;width:10px;height:10px;margin-top:9px;border-radius:2px;background:var(--green);box-shadow:0 0 12px var(--green)}
+.pitem b{display:block;font-family:"Space Grotesk",sans-serif;font-size:18px;margin-bottom:4px}
+.pitem p{color:#b9c3cf;font-size:15px}
+
+/* years */
+.years{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ycard{all:unset;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s,background .2s;display:flex;flex-direction:column;gap:10px;min-height:230px}
+.ycard:hover{transform:translateY(-4px);border-color:rgba(34,197,94,.55)}
+.ycard:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.ycard.active{border-color:var(--green);background:linear-gradient(180deg,rgba(34,197,94,.12),var(--card))}
+.ycard .yr{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--muted)}
+.ycard .yn{font-family:"Space Grotesk",sans-serif;font-size:46px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.ycard .yn span{color:var(--green)}
+.ycard .yt{font-size:17px;font-weight:600}
+.ycard .ym{font-size:14px;color:var(--muted);flex:1}
+.ycard .open{font-size:14px;color:var(--green);font-weight:600;display:flex;align-items:center;gap:6px}
+.ycard .open i{font-style:normal;transition:transform .25s}
+.ycard.active .open i{transform:rotate(180deg)}
+.ycard svg.spark{position:absolute;right:-6px;top:18px;opacity:.35}
+
+.panel-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease;margin-top:18px}
+.panel-wrap.show{grid-template-rows:1fr}
+.panel-inner{overflow:hidden}
+.panel{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:34px}
+.panel h3{font-family:"Space Grotesk",sans-serif;font-size:30px;letter-spacing:-.02em;margin-bottom:6px}
+.panel .goal{background:var(--green-soft);border-left:3px solid var(--green);padding:14px 18px;border-radius:8px;margin:16px 0 28px;color:#d7f5e0}
+.panel h4{font-family:"Space Grotesk",sans-serif;font-size:19px;margin:30px 0 14px;color:var(--text)}
+.panel h4 .tag{font-family:Inter,sans-serif;font-size:13px;color:var(--muted);font-weight:500;margin-left:8px}
+.items{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.item .when{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--gold);margin-bottom:6px}
+.item b{display:block;font-size:16px;margin-bottom:6px;line-height:1.35}
+.item p{font-size:14px;color:#b0bac6}
+.item .cost{margin-top:10px;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--green)}
+.panel ul{padding-left:20px;color:#c3ccd7}
+.panel ul li{margin:6px 0}
+.panel .note{color:#b0bac6;font-size:15px;margin-top:12px}
+.rule{margin-top:30px;display:flex;gap:12px;align-items:center;background:rgba(245,185,66,.1);border:1px solid rgba(245,185,66,.35);color:#f8dca0;padding:14px 18px;border-radius:10px;font-weight:600}
+.rule span{font-size:20px}
+.trip{background:linear-gradient(135deg,rgba(96,165,250,.14),rgba(96,165,250,.03));border:1px solid rgba(96,165,250,.35);border-radius:12px;padding:20px}
+.trip b{font-size:17px}
+.trip p{font-size:14.5px;color:#c3ccd7;margin-top:6px}
+.close-btn{all:unset;cursor:pointer;float:right;color:var(--muted);font-size:14px;border:1px solid var(--line);padding:6px 12px;border-radius:8px}
+.close-btn:hover{color:var(--text);border-color:var(--muted)}
+
+footer{margin-top:100px;border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted);font-size:13.5px;text-align:center}
+
+@media (max-width:820px){
+  .years{grid-template-columns:1fr}
+  .vgrid{grid-template-columns:1fr}
+  .vision-lead{grid-template-columns:1fr;gap:12px}
+  .panel{padding:22px}
+  .ycard{min-height:0}
+  .hero{padding-top:48px}.chart-box{padding:12px 8px 6px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.candle{opacity:1}.ma{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+<header class="hero wrap">
+  <div class="eyebrow">Plan de 3 años · desde cero</div>
+  <h1>Trading<br><span class="g">Proyecto</span></h1>
+  <p>Un plan para aprender a operar en bolsa con bases sólidas: primero el inglés, luego la economía y las finanzas, y al final la especialización en mercados.</p>
+
+  <div class="chart-box">
+    <div class="chart-head">
+      <span class="sym">PLAN · 36 MESES</span>
+      <span class="px" id="px">▲ +0.00%</span>
+      <span class="tf">1D · velas japonesas · media móvil 20</span>
+    </div>
+    <svg id="chart" viewBox="0 0 1000 440" role="img" aria-label="Gráfica de bolsa con velas japonesas que sube con el tiempo"></svg>
+  </div>
+</header>
+
+<!-- VISIÓN -->
+<section id="vision" class="wrap">
+  <div class="sec-label">01 — La visión</div>
+  <h2>Aprender antes de arriesgar.</h2>
+
+  <div class="vision-lead">
+    <div class="big-stat">+90%<small>de los day traders pierde</small></div>
+    <div>
+      <h3>La mayoría pierde, así que la meta es aprender antes de arriesgar.</h3>
+      <p>En todos los países con datos, más del 90% de los day traders pierde dinero. Por eso el plan dedica tres años a formarte y solo después pasa a una cuenta pequeña con dinero real.</p>
+    </div>
+  </div>
+
+  <div class="vgrid">
+    <div class="vcard">
+      <div class="vnum">01</div>
+      <h3>El inglés va primero.</h3>
+      <p>Todo el año 1 se centra en llegar a nivel B2 y certificarlo con el TOEFL o el Cambridge. Sin ese nivel no puedes aprovechar los mejores cursos, los libros ni los viajes de Nueva York, Harvard y Zúrich.</p>
+    </div>
+    <div class="vcard">
+      <div class="vnum">02</div>
+      <h3>Las bases antes que las estrategias.</h3>
+      <p>El orden es primero economía, estados financieros, estadística, Excel e IA, y después análisis técnico, riesgo y la certificación AMIB. Los cursos de traders como Alejandro Cardona van al final, cuando ya puedas evaluarlos con criterio.</p>
+    </div>
+    <div class="vcard">
+      <div class="vnum">03</div>
+      <h3>El riesgo decide si sobrevives.</h3>
+      <p>Cuando empieces con dinero real, arriesga como máximo 0.5–1% de la cuenta por operación, opera con un plan escrito y registra cada operación. A los 6 meses compara tus resultados con lo que habría dado un fondo indexado. Si no le ganas, reduce el tamaño de tus operaciones o cambia a invertir a largo plazo.</p>
+    </div>
+    <div class="vcard">
+      <div class="vnum">04</div>
+      <h3>La psicología pesa tanto como el conocimiento.</h3>
+      <p>Pierden más los traders que reaccionan con más emoción y los que operan con exceso de confianza. Lo que más ayuda es tener reglas claras y revisar tus propios errores. Los mejores resultados vienen de la disciplina, no de adivinar el mercado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPIOS -->
+<section id="principios" class="wrap">
+  <div class="sec-label">02 — Principios del plan</div>
+  <h2>Las reglas del juego.</h2>
+  <div class="plist">
+    <div class="pitem"><div class="ic"></div><div><b>Primero el idioma.</b><p>Casi todo el material serio de finanzas (libros, cursos, reportes, el CFA, cursos en el extranjero) está en inglés. Sin un nivel B2–C1 el resto del plan se vuelve más lento y más caro.</p></div></div>
+    <div class="pitem"><div class="ic"></div><div><b>Primero entender, después operar.</b><p>No se toca dinero real en bolsa hasta terminar las bases. Antes de eso solo hay simuladores y cuentas demo, para practicar sin arriesgar.</p></div></div>
+    <div class="pitem"><div class="ic"></div><div><b>Medio tiempo constante.</b><p>El inglés ocupa el tiempo principal del año 1, y en paralelo van uno o dos cursos de bases. La meta es avanzar sin saturarse.</p></div></div>
+    <div class="pitem"><div class="ic"></div><div><b>Cada etapa tiene una meta medible.</b><p>Por ejemplo: un examen de inglés aprobado, un diploma, una certificación. Si no se cumple la meta, no se pasa a la siguiente etapa.</p></div></div>
+    <div class="pitem"><div class="ic"></div><div><b>Los cursos de traders van al final.</b><p>Con las bases, se puede evaluar críticamente a Cardona y a otros instructores, en vez de creerles todo.</p></div></div>
+    <div class="pitem"><div class="ic"></div><div><b>Un viaje de estudio por año.</b><p>Cada año tiene un viaje ligado a lo que se está aprendiendo, y un segundo viaje corto opcional.</p></div></div>
+    <div class="pitem"><div class="ic"></div><div><b>Calidad antes que precio.</b><p>El presupuesto no es límite: cuando hay una opción de paga mejor que una gratuita, se elige la de paga.</p></div></div>
+  </div>
+</section>
+
+<!-- AÑOS -->
+<section id="anios" class="wrap">
+  <div class="sec-label">03 — La ruta</div>
+  <h2>Tres años, tres metas.</h2>
+
+  <div class="years">
+    <button class="ycard" data-y="1" aria-expanded="false" aria-controls="panel">
+      <svg class="spark" width="120" height="50" viewBox="0 0 120 50"><polyline fill="none" stroke="#22c55e" stroke-width="2.5" points="0,40 20,36 40,38 60,28 80,30 100,18 120,14"/></svg>
+      <div class="yr">MESES 1–12</div>
+      <div class="yn">Año <span>1</span></div>
+      <div class="yt">Inglés como prioridad</div>
+      <div class="ym">Llegar a B2 y certificarlo. En paralelo: qué es la bolsa, IA y Excel.</div>
+      <div class="open">Ver el año <i>▾</i></div>
+    </button>
+    <button class="ycard" data-y="2" aria-expanded="false" aria-controls="panel">
+      <svg class="spark" width="120" height="50" viewBox="0 0 120 50"><polyline fill="none" stroke="#22c55e" stroke-width="2.5" points="0,42 20,34 40,36 60,24 80,26 100,14 120,10"/></svg>
+      <div class="yr">MESES 13–24</div>
+      <div class="yn">Año <span>2</span></div>
+      <div class="yt">Bases de economía y finanzas</div>
+      <div class="ym">Mercados, estadística, economía, estados financieros e industria de inversión.</div>
+      <div class="open">Ver el año <i>▾</i></div>
+    </button>
+    <button class="ycard" data-y="3" aria-expanded="false" aria-controls="panel">
+      <svg class="spark" width="120" height="50" viewBox="0 0 120 50"><polyline fill="none" stroke="#22c55e" stroke-width="2.5" points="0,44 20,30 40,34 60,20 80,22 100,10 120,4"/></svg>
+      <div class="yr">MESES 25–36</div>
+      <div class="yn">Año <span>3</span></div>
+      <div class="yt">Especialización en mercados</div>
+      <div class="ym">Análisis técnico, certificación AMIB, IA aplicada a finanzas y riesgo.</div>
+      <div class="open">Ver el año <i>▾</i></div>
+    </button>
+  </div>
+
+  <div class="panel-wrap" id="panelWrap">
+    <div class="panel-inner"><div class="panel" id="panel" tabindex="-1"></div></div>
+  </div>
+</section>
+
+<!-- Contenido de cada año -->
+<template id="y1">
+  <button class="close-btn" data-close>Cerrar ✕</button>
+  <div class="yr mono" style="color:var(--muted);font-size:13px">AÑO 1 · MESES 1–12</div>
+  <h3>Inglés como prioridad</h3>
+  <div class="goal"><b>Meta del año:</b> llegar a un nivel <b>B2</b> de inglés y demostrarlo con un examen oficial. En paralelo, a medio tiempo: qué es la bolsa, inteligencia artificial y Excel, todavía sin invertir.</div>
+
+  <h4>Inglés <span class="tag">tiempo principal: 8–10 horas por semana</span></h4>
+  <div class="items">
+    <div class="item"><b><a href="https://www.proulex.com" target="_blank" rel="noopener">Proulex</a> (Universidad de Guadalajara)</b><p>Presencial en GDL, cursos intensivos y sabatinos. Ofrece cursos de preparación para el TOEFL y para los exámenes de Cambridge.</p><div class="cost">Consultar por nivel</div></div>
+    <div class="item"><b>Escuelas privadas en GDL</b><p>Harmon Hall, Berlitz, Instituto Mexicano Norteamericano, International House. Presencial. En Berlitz, un nivel grupal toma 6–8 semanas.</p><div class="cost">$2,600–3,100 MXN al mes (ref. CDMX)</div></div>
+    <div class="item"><b>Tutor en línea 1 a 1 (Preply, italki)</b><p>Buen complemento para practicar conversación.</p><div class="cost">$200–800 MXN la hora</div></div>
+    <div class="item"><b>Inmersión en el extranjero</b><p>4–6 semanas de inglés intensivo en Nueva York (ver el viaje del año).</p><div class="cost">Desde USD 470 por semana</div></div>
+  </div>
+
+  <h4>Examen al final del año <span class="tag">elige uno</span></h4>
+  <div class="items">
+    <div class="item"><b>TOEFL iBT</b><p>En Zapopan se presenta en la <a href="https://contenidos.uag.mx/pdfs/manual-toefl_2026.pdf" target="_blank" rel="noopener">UAG</a>, centro certificador oficial. Es el más aceptado por universidades de EE. UU.</p><div class="cost">USD 250</div></div>
+    <div class="item"><b>Cambridge B2 First</b><p>Muy reconocido en Europa (Suiza, Reino Unido).</p><div class="cost">Cerca de $3,200 MXN</div></div>
+  </div>
+  <p class="note"><b>Por qué B2:</b> es el nivel que piden los cursos en el extranjero de este plan. La <a href="https://www.summerschools.uzh.ch/en/courses-on-offer/finance-for-the-future.html" target="_blank" rel="noopener">Universidad de Zúrich</a>, por ejemplo, pide aproximadamente B2.</p>
+
+  <h4>Medio tiempo <span class="tag">2–3 horas por semana</span></h4>
+  <div class="items">
+    <div class="item"><div class="when">MESES 3–6</div><b>Qué es la bolsa</b><p>Curso presencial <a href="https://expansion.mx/finanzas-personales/2022/02/23/4-cursos-que-puedes-tomar-para-aprender-a-invertir" target="_blank" rel="noopener">Introducción al mercado de valores, Escuela Bolsa Mexicana</a> (18 horas), más la ruta "Aprende a invertir" de la <a href="https://dplnews.com/bolsa-mexicana-valores-lanza-nueva-escuela-digital/" target="_blank" rel="noopener">Escuela Digital de la BMV</a> (12 horas, en línea).</p><div class="cost">$5,916 MXN (precio 2022)</div></div>
+    <div class="item"><div class="when">MESES 6–8</div><b>Inteligencia artificial</b><p><a href="https://diplomados.iteso.mx/documents/d/diplomados/iteso_inteligencia_artificial_generativa_b" target="_blank" rel="noopener">IA Generativa del ITESO</a>, en línea, 40 horas en 6 semanas. Enseña a escribir instrucciones (prompts) y a usar la IA para texto, imágenes, audio y video. Desde ahí sirve para resumir reportes, practicar inglés y estudiar más rápido.</p><div class="cost">Consultar con el ITESO</div></div>
+    <div class="item"><div class="when">MESES 9–12</div><b>Excel</b><p><a href="https://www.wallstreetprep.com/self-study-programs/excel-crash-course" target="_blank" rel="noopener">Excel Crash Course de Wall Street Prep</a>: 91 lecciones (8 h 39 min), en inglés. Lo usan bancos de inversión para entrenar a sus analistas. Todo el análisis de los años 2 y 3 se hace en hojas de cálculo.</p><div class="cost">Consultar en su sitio</div></div>
+  </div>
+
+  <h4>Viaje de estudio <span class="tag">meses 7–8</span></h4>
+  <div class="trip"><b>✈ Inglés intensivo en Nueva York</b><p>En <a href="https://www.kaplaninternational.com/united-states/new-york" target="_blank" rel="noopener">Kaplan International</a>, a minutos de Central Park. El curso intensivo incluye inglés de negocios. 4–6 semanas: USD 470 por semana (1–4 semanas) o 440 (5–11 semanas), más USD 120 por semana para la versión intensiva; alojamiento aparte.</p><p><b>Opcional:</b> 1–2 semanas más en otra escuela de la misma red (ej. Boston), para repasar antes del examen B2.</p><p>Estados Unidos exige visa a los mexicanos: conviene tramitarla al inicio del año 1.</p></div>
+
+  <div class="rule"><span>⚠</span> Regla del año 1: no se opera en bolsa; solo se aprende.</div>
+</template>
+
+<template id="y2">
+  <button class="close-btn" data-close>Cerrar ✕</button>
+  <div class="yr mono" style="color:var(--muted);font-size:13px">AÑO 2 · MESES 13–24</div>
+  <h3>Bases de economía y finanzas</h3>
+  <div class="goal"><b>Meta del año:</b> entender cómo funciona la economía, cómo leer los estados financieros de una empresa y los conceptos básicos de estadística y riesgo. El inglés se mantiene con una hora diaria de lectura o video, y los cursos de este año se toman en inglés.</div>
+
+  <h4>Materias y cursos <span class="tag">en este orden</span></h4>
+  <div class="items">
+    <div class="item"><div class="when">1 · MESES 13–15</div><b>Mercados financieros</b><p>Acciones, bonos, fondos, riesgo, burbujas, finanzas conductuales. <a href="https://online.yale.edu/courses/financial-markets" target="_blank" rel="noopener">Financial Markets, de Yale</a> (Robert Shiller, premio Nobel). En línea, 33 horas en 7 semanas.</p><div class="cost">≈ USD 49 con certificado</div></div>
+    <div class="item"><div class="when">2 · MESES 15–18</div><b>Estadística y modelos cuantitativos</b><p>Probabilidad, modelos, proyecciones y valuación en hojas de cálculo. <a href="https://online.wharton.upenn.edu/?p=1774" target="_blank" rel="noopener">Business and Financial Modeling, de Wharton</a>. En línea, 3–4 semanas por curso.</p><div class="cost">USD 79 al mes</div></div>
+    <div class="item"><div class="when">3 · VERANO, MESES 18–19</div><b>Economía</b><p>Oferta y demanda, inflación, tasas de interés, bancos centrales, tipo de cambio. Un curso de <a href="https://summer.harvard.edu/academics/tuition-fees-payment/" target="_blank" rel="noopener">Harvard Summer School</a>, presencial: es el viaje del año.</p><div class="cost">Ver viaje del año 2</div></div>
+    <div class="item"><div class="when">4 · MESES 19–22</div><b>Contabilidad y estados financieros</b><p>Balance, estado de resultados, flujo de efectivo, razones financieras. <a href="https://diplomados.iteso.mx/documents/d/diplomados/iteso_administracion_financiera_b" target="_blank" rel="noopener">Diplomado en Administración Financiera, ITESO</a>: presencial en Tlaquepaque, sábados 9:00–13:00, 124 horas en 31 semanas.</p><div class="cost">$48,000 MXN</div></div>
+    <div class="item"><div class="when">5 · MESES 22–24</div><b>Industria de inversión</b><p>Instrumentos, fondos, índices, ética, cómo funciona la industria. <a href="https://www.cfainstitute.org/sites/default/files/docs/programs/investment-foundations-certificate/investment-foundations-certificate-curriculum.pdf" target="_blank" rel="noopener">Investment Foundations Certificate, del CFA Institute</a>. En línea, examen de 100 preguntas.</p><div class="cost">USD 350</div></div>
+  </div>
+  <p class="note"><b>Alternativa en línea al diplomado del ITESO:</b> el <a href="https://uvm.mx/storage/app/media/plan_estudios/diplomado-aula-virtual/finanzas-y-contabilidad/inversiones-y-mercados-financieros.pdf" target="_blank" rel="noopener">Diplomado en Inversiones y Mercados Financieros de la UVM</a>, 96 horas en aula virtual. Cubre mercado de valores, fondos, análisis fundamental y técnico. El precio no aparece publicado.</p>
+
+  <h4>Práctica sin dinero real <span class="tag">meses 18–24</span></h4>
+  <ul>
+    <li>Abrir una <b>cuenta demo o un simulador</b> y llevar un registro de cada operación simulada: por qué entró, por qué salió y qué aprendió.</li>
+    <li>Participar en un concurso como el <b>Reto Actinver</b>, con un simulador conectado en tiempo real a la BMV. En una edición anterior la inscripción costaba $1,000 MXN + IVA, o $500 para estudiantes (hay que confirmar el precio actual).</li>
+  </ul>
+
+  <h4>Viaje de estudio <span class="tag">meses 18–19</span></h4>
+  <div class="trip"><b>✈ Curso de economía en Harvard Summer School</b><p>Cambridge, EE. UU. Abierto a adultos, con grupos pequeños. 3 semanas (sesión de junio–julio). Aprox. USD 3,980 por curso de 4 créditos + USD 3,700 de alojamiento y comidas.</p><p><b>Opcional:</b> 2 días en Nueva York para el curso presencial <a href="https://nyif.com/capital-markets-101-market-structure-products-regulatory-trends.html" target="_blank" rel="noopener">Capital Markets 101 del New York Institute of Finance</a> (USD 1,690), más una visita a Wall Street.</p></div>
+
+  <div class="rule"><span>⚠</span> Regla del año 2: todavía no se opera con dinero real.</div>
+</template>
+
+<template id="y3">
+  <button class="close-btn" data-close>Cerrar ✕</button>
+  <div class="yr mono" style="color:var(--muted);font-size:13px">AÑO 3 · MESES 25–36</div>
+  <h3>Especialización en mercados</h3>
+  <div class="goal"><b>Meta del año:</b> aprender lo propio del trading (análisis de acciones, análisis técnico, derivados y gestión de riesgo) y certificarse en México. Incluye el viaje a Suiza y un segundo curso de IA, ya aplicado a finanzas.</div>
+
+  <h4>Materias y cursos</h4>
+  <div class="items">
+    <div class="item"><div class="when">1 · MESES 25–27</div><b>Análisis técnico y operación</b><p>Gráficas, tipos de órdenes, administración del dinero, psicología del trading. <a href="https://www.nyif.com/stock-trading-professional-certificate-online.html" target="_blank" rel="noopener">Stock Trading Professional Certificate, del New York Institute of Finance</a>. En línea, 9 horas.</p><div class="cost">USD 299</div></div>
+    <div class="item"><div class="when">2 · MESES 27–31</div><b>Certificación en México (AMIB)</b><p>Mercado de dinero, capitales, derivados, riesgos, regulación y ética bursátil. <a href="https://learn.maestriasydiplomados.tec.mx/hubfs/VEC/Aula_Virtual/Folletos/AV_Preparacion%20para%20el%20Examen%20de%20Certificacion%20AMIB%20F3.pdf" target="_blank" rel="noopener">Curso de preparación AMIB Figura 3, Tec de Monterrey</a> + examen. La certificación dura 3 años.</p><div class="cost">Examen $6,175 MXN + IVA</div></div>
+    <div class="item"><div class="when">3 · VERANO, MESES 30–32</div><b>Viaje del año 3</b><p>Universidad de Zúrich o LSE, 3 semanas (ver abajo).</p><div class="cost">Ver viaje del año 3</div></div>
+    <div class="item"><div class="when">4 · MESES 32–34</div><b>IA aplicada a finanzas</b><p>IA y aprendizaje automático para análisis financiero, Python, herramientas como Copilot y casos reales. <a href="https://wallstreetprep.business.columbia.edu/ai-certification/employer-funded/" target="_blank" rel="noopener">AI for Business &amp; Finance, Columbia Business School y Wall Street Prep</a>. En línea, 8 semanas, 8–10 h por semana.</p><div class="cost">USD 4,800</div></div>
+    <div class="item"><div class="when">5 · MESES 34–36</div><b>Análisis fundamental y riesgo</b><p>Valuación de empresas, portafolios, renta fija, derivados. Preparación del <b>CFA Nivel I</b> en la <a href="https://escuelabolsamexicana.com/en/pages/eventos" target="_blank" rel="noopener">Escuela Bolsa Mexicana</a>. Opcional.</p><div class="cost">Verificar precio con el CFA Institute</div></div>
+  </div>
+
+  <h4>Viaje de estudio <span class="tag">meses 30–32</span></h4>
+  <div class="trip"><b>✈ Finance for the Future, Universidad de Zúrich (Suiza)</b><p><a href="https://www.summerschools.uzh.ch/en/courses-on-offer/finance-for-the-future.html" target="_blank" rel="noopener">Programa</a> con simulaciones, juegos y visitas a instituciones financieras suizas. 3 semanas en julio, aprox. 3,800 CHF con alojamiento. Pide inglés B2. Alternativa: <a href="https://www.lse.ac.uk/study-at-lse/summer-schools/Summer-School/Fees/Secure" target="_blank" rel="noopener">LSE Summer School</a>, £4,450 por sesión de 3 semanas. Para Suiza, en cursos cortos basta con entrar como turista.</p><p><b>Opcional:</b> fin de semana en Omaha, EE. UU., para la asamblea anual de Berkshire Hathaway (la empresa de Warren Buffett). Es a inicios de mayo; la de 2027 será el 1 de mayo.</p></div>
+
+  <h4>Diplomados y maestrías en Guadalajara <span class="tag">opcional, año 4 en adelante</span></h4>
+  <p class="note" style="margin-top:0;margin-bottom:12px">Una maestría solo tiene sentido si se quiere trabajar en el sector financiero (casa de bolsa, fondo, banco), no para operar por cuenta propia. Además, pide licenciatura terminada. Si no hay licenciatura, la ruta equivalente es seguir con el CFA (niveles I, II y III).</p>
+  <div class="items">
+    <div class="item"><b><a href="https://udg.mx/sites/default/files/maestria_en_finanzas_-cucea_pnpc_0.pdf" target="_blank" rel="noopener">Maestría en Finanzas — UdeG (CUCEA)</a></b><p>Escolarizada, 4 semestres. Pública y en el padrón de posgrados de calidad, lo que permite buscar beca de manutención.</p></div>
+    <div class="item"><b><a href="https://oci02.img.iteso.mx/POS/HOJAS/19A_pos_administracion.pdf" target="_blank" rel="noopener">MBA con énfasis en Finanzas — ITESO</a></b><p>Presencial o mixta. Incluye estrategias cuantitativas de inversión y finanzas corporativas.</p></div>
+    <div class="item"><b><a href="https://www.univa.mx/wp-content/uploads/2022/07/Insert-Mtria-Finanzas-abr2022-copy.pdf" target="_blank" rel="noopener">Maestría en Finanzas — UNIVA</a></b><p>Escolarizada. Opción privada de menor costo, enfocada en proyectos financieros.</p></div>
+  </div>
+
+  <div class="rule"><span>⚠</span> Regla del año 3: se puede operar en el simulador con reglas estrictas, pero el dinero real todavía espera a la siguiente etapa.</div>
+</template>
+
+<footer class="wrap">
+  Los precios son de 2026 y pueden cambiar; hay que confirmarlos con cada institución antes de inscribirse.<br>
+  Este plan es educativo y no es asesoría financiera.
+</footer>
+
+<script>
+// ---------- Ticker ----------
+(function(){
+  const items=[["S&P 500","+0.84%",1],["IPC","+0.41%",1],["NASDAQ","+1.12%",1],["DOW","-0.12%",0],["USD/MXN","-0.30%",0],["AAPL","+0.67%",1],["NVDA","+2.05%",1],["WALMEX","-0.54%",0],["GMEXICO","+1.30%",1],["TSLA","-1.48%",0],["MSFT","+0.52%",1],["AMXB","+0.22%",1]];
+  const html=items.map(([s,c,u])=>`<span><b>${s}</b><span class="${u?'up':'down'}">${u?'▲':'▼'} ${c}</span></span>`).join('');
+  document.getElementById('ticker').innerHTML=html+html;
+})();
+
+// ---------- Gráfica de velas ----------
+(function(){
+  const svg=document.getElementById('chart'), NS='http://www.w3.org/2000/svg';
+  const W=1000,H=440,padL=10,padR=60,top=20,priceH=320,volTop=355,volH=70;
+  let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646};
+  const N=60,data=[];let p=100;
+  for(let i=0;i<N;i++){
+    const drift=0.45+Math.sin(i/7)*0.9;
+    const o=p, c=o+drift+(rnd()-0.5)*5;
+    const h=Math.max(o,c)+rnd()*2.6, l=Math.min(o,c)-rnd()*2.6;
+    data.push({o,c,h,l,v:30+rnd()*70});p=c;
+  }
+  const max=Math.max(...data.map(d=>d.h)),min=Math.min(...data.map(d=>d.l));
+  const y=v=>top+(max-v)/(max-min)*priceH;
+  const step=(W-padL-padR)/N, bw=step*0.62;
+  const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e};
+  // grid
+  for(let i=0;i<=5;i++){
+    const gy=top+i*priceH/5;
+    svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:gy,y2:gy,stroke:'#1e2a3a','stroke-width':1}));
+    const t=el('text',{x:W-padR+8,y:gy+4,fill:'#6b7a8d','font-size':12,'font-family':'JetBrains Mono, monospace'});
+    t.textContent=(max-i*(max-min)/5).toFixed(1);svg.appendChild(t);
+  }
+  // area under MA
+  const ma=data.map((d,i)=>{const s=data.slice(Math.max(0,i-19),i+1);return s.reduce((a,b)=>a+b.c,0)/s.length});
+  const pts=ma.map((m,i)=>`${padL+i*step+step/2},${y(m)}`).join(' ');
+  const defs=el('defs',{});defs.innerHTML='<linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22c55e" stop-opacity=".22"/><stop offset="1" stop-color="#22c55e" stop-opacity="0"/></linearGradient>';svg.appendChild(defs);
+  svg.appendChild(el('polygon',{points:`${padL+step/2},${top+priceH} ${pts} ${padL+(N-1)*step+step/2},${top+priceH}`,fill:'url(#ga)'}));
+  // candles + volume
+  data.forEach((d,i)=>{
+    const up=d.c>=d.o,col=up?'#22c55e':'#ef4444',cx=padL+i*step+step/2;
+    const g=el('g',{class:'candle',style:`animation-delay:${i*18}ms;transform-origin:${cx}px ${y((d.o+d.c)/2)}px`});
+    g.appendChild(el('line',{x1:cx,x2:cx,y1:y(d.h),y2:y(d.l),stroke:col,'stroke-width':1.6}));
+    const yt=y(Math.max(d.o,d.c)),hb=Math.max(2,Math.abs(y(d.o)-y(d.c)));
+    g.appendChild(el('rect',{x:cx-bw/2,y:yt,width:bw,height:hb,fill:col,rx:1.5}));
+    const vh=d.v/100*volH;
+    g.appendChild(el('rect',{x:cx-bw/2,y:volTop+volH-vh,width:bw,height:vh,fill:col,opacity:.35,rx:1}));
+    svg.appendChild(g);
+  });
+  svg.appendChild(el('polyline',{points:pts,fill:'none',stroke:'#f5b942','stroke-width':2.4,class:'ma','stroke-linejoin':'round'}));
+  // last price tag
+  const last=data[N-1].c,ly=y(last);
+  svg.appendChild(el('line',{x1:padL,x2:W-padR,y1:ly,y2:ly,stroke:'#22c55e','stroke-dasharray':'4 4',opacity:.6}));
+  svg.appendChild(el('rect',{x:W-padR+2,y:ly-11,width:56,height:22,rx:4,fill:'#22c55e'}));
+  const lt=el('text',{x:W-padR+30,y:ly+4,fill:'#05210f','font-size':12,'font-weight':700,'text-anchor':'middle','font-family':'JetBrains Mono, monospace'});lt.textContent=last.toFixed(1);svg.appendChild(lt);
+  document.getElementById('px').textContent='▲ +'+((last/data[0].o-1)*100).toFixed(2)+'%';
+})();
+
+// ---------- Tarjetas de los años ----------
+(function(){
+  const cards=[...document.querySelectorAll('.ycard')],wrap=document.getElementById('panelWrap'),panel=document.getElementById('panel');
+  let current=null;
+  function close(){wrap.classList.remove('show');cards.forEach(c=>{c.classList.remove('active');c.setAttribute('aria-expanded','false')});current=null}
+  function open(n){
+    if(current===n){close();return}
+    panel.innerHTML='';panel.appendChild(document.getElementById('y'+n).content.cloneNode(true));
+    panel.querySelector('[data-close]').onclick=()=>{close();document.getElementById('anios').scrollIntoView({behavior:'smooth'})};
+    cards.forEach(c=>{const a=c.dataset.y===n;c.classList.toggle('active',a);c.setAttribute('aria-expanded',a)});
+    wrap.classList.add('show');current=n;
+    setTimeout(()=>wrap.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }
+  cards.forEach(c=>c.addEventListener('click',()=>open(c.dataset.y)));
+})();
+</script>
+</body>
+</html>
